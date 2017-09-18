@@ -9,9 +9,13 @@
 
     <changeSet id="1" author="robkle">
     		<comment>initial table for Issue #1</comment>
-        <createTable tableName="memberprofile">
-            <column name="memberid" type="int" autoIncrement="true">
+        <createTable tableName="mp01_memberprofile">
+        		
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="memberid" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="givenname" type="varchar(50)"/>
             <column name="surname" type="varchar(50)">
@@ -21,8 +25,14 @@
     </changeSet>
     <changeSet id="2" author="robkle">
     		<comment>add missing image for profile</comment>
-    		<addColumn tableName="memberprofile">
-    			<column name="image" type="blob"/>
+    		<addColumn tableName="mmp01_emberprofile">
+    			<column name="image" type="BLOB"/>
+    		</addColumn>
+    </changeSet>
+    <changeSet id="3" author="robkle">
+    		<comment>add missing birthdate for profile</comment>
+    		<addColumn tableName="mp01_memberprofile">
+    			<column name="dateofbith" type="DATE"/>
     		</addColumn>
     </changeSet>
 
