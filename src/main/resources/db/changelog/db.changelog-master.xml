@@ -25,14 +25,14 @@
     </changeSet>
     <changeSet id="2" author="robkle">
     		<comment>add missing image for profile</comment>
-    		<addColumn tableName="mmp01_emberprofile">
+    		<addColumn tableName="mp01_memberprofile">
     			<column name="image" type="BLOB"/>
     		</addColumn>
     </changeSet>
     <changeSet id="3" author="robkle">
     		<comment>add missing birthdate for profile</comment>
     		<addColumn tableName="mp01_memberprofile">
-    			<column name="dateofbith" type="DATE"/>
+    			<column name="dateofbirth" type="DATE"/>
     		</addColumn>
     </changeSet>
 

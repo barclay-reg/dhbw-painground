@@ -1,0 +1,43 @@
+/**
+ * 
+ */
+package net.kleinschmager.dhbw.tfe15.painground.ui;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.vaadin.annotations.Theme;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.UI;
+
+import net.kleinschmager.dhbw.tfe15.painground.persistence.model.MemberProfile;
+import net.kleinschmager.dhbw.tfe15.painground.persistence.repository.MemberProfileRepository;
+
+/**
+ * @author robertkleinschmager
+ *
+ */
+@SpringUI
+@Theme("valo")
+public class MainUI extends UI {
+
+	MemberProfileRepository repo;
+	Grid<MemberProfile> grid;
+	
+	@Autowired
+	public MainUI(MemberProfileRepository repo) {
+	    this.repo = repo;
+	    this.grid = new Grid<>(MemberProfile.class);
+	}
+	
+	@Override
+	protected void init(VaadinRequest request) {
+	    setContent(grid);
+	    listCustomers();
+	}
+
+	private void listCustomers() {
+	    grid.setItems(repo.findAll());
+	}
+}

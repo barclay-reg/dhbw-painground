@@ -34,14 +34,14 @@ public class MemberProfile {
 	 * Constructor to use within the rest of all code
 	 * 
 	 * @param memberId the unique id (businesskey) for this member
-	 * @param sureName the surename (family name) of this member
+	 * @param surName the surename (family name) of this member
 	 */
-	public MemberProfile(@NotNull String memberId,@NotNull String sureName) {
+	public MemberProfile(@NotNull String memberId,@NotNull String surName) {
 		Preconditions.checkNotNull(memberId);
-		Preconditions.checkNotNull(sureName);
+		Preconditions.checkNotNull(surName);
 		
 		this.memberId = memberId;
-		this.sureName = sureName;
+		this.surName = surName;
 	}
 	
 	@Id
@@ -52,11 +52,11 @@ public class MemberProfile {
 	@Column(unique=true, nullable=false, name="memberid", length=50)
 	private String memberId;
 	
-	@Column(nullable=true)
+	@Column(nullable=true, name="givenname")
 	private String givenName;
     
-    @Column(nullable=false)
-    private String sureName;
+    @Column(nullable=false, name="surname")
+    private String surName;
     
     @Column(nullable=true, name="dateofbirth")
     private Date dateOfBirth;
@@ -88,12 +88,12 @@ public class MemberProfile {
 		this.givenName = givenName;
 	}
 
-	public String getSureName() {
-		return sureName;
+	public String getSurName() {
+		return surName;
 	}
 
-	public void setSureName(String sureName) {
-		this.sureName = sureName;
+	public void setSurName(String surName) {
+		this.surName = surName;
 	}
 
 	public Date getDateOfBirth() {
