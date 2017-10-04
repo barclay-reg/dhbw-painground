@@ -34,6 +34,10 @@ public class MainUI extends UI {
 	@Override
 	protected void init(VaadinRequest request) {
 	    setContent(grid);
+	    
+	    grid.setCaption("List of members");
+	    grid.setWidth(100, Unit.PERCENTAGE);
+	    
 	    listCustomers();
 	}
 

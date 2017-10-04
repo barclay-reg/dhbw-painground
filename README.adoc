@@ -17,5 +17,6 @@ Based on Spring boot with
 
 1. clone repo
 2. run `mvn spring-boot:run` in commandline or launch class `net.kleinschmager.dhbw.tfe15.painground.PaingroundApplication` as main class
-3. You can look at http://localhost:8080/liquibase to review the list of scripts.
-4. View H2 console (at http://localhost:8080/h2-console) so that you can review the state of the database (the default jdbc url is `jdbc:h2:mem:testdb`).
+3. view UI at http://localhost:8080
+4. You can look at http://localhost:8080/liquibase to review the list of scripts.
+5. View H2 console (at http://localhost:8080/h2-console) so that you can review the state of the database (the default jdbc url is `jdbc:h2:mem:testdb`).
