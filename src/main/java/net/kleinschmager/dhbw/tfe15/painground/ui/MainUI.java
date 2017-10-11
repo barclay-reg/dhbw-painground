@@ -5,7 +5,10 @@ package net.kleinschmager.dhbw.tfe15.painground.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Title;
+import com.vaadin.annotations.Viewport;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.Grid;
@@ -20,6 +23,9 @@ import net.kleinschmager.dhbw.tfe15.painground.persistence.repository.MemberProf
  */
 @SpringUI
 @Theme("valo")
+@Viewport("initial-scale=1, maximum-scale=1")
+@Title("DHBW Painground - PeopleSkill")
+@Push
 public class MainUI extends UI {
 
 	MemberProfileRepository repo;

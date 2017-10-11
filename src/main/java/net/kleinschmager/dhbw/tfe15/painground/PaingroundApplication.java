@@ -11,6 +11,7 @@ import net.kleinschmager.dhbw.tfe15.painground.persistence.model.MemberProfile;
 import net.kleinschmager.dhbw.tfe15.painground.persistence.repository.MemberProfileRepository;
 
 @SpringBootApplication
+
 public class PaingroundApplication {
 	
 	private static final Logger log = LoggerFactory.getLogger(PaingroundApplication.class);
@@ -20,10 +21,17 @@ public class PaingroundApplication {
 		SpringApplication.run(PaingroundApplication.class, args);
 	}
 	
+	/**
+	 * Using the CommandLineRunner feature of spring-boot
+	 * 
+	 * The annotation @Bean ensures, that my {@link CommandLineRunner} is in the spring context, 
+	 * spring-boot ensures, that this runner is executed 
+	 *  
+	 */
 	@Bean
 	public CommandLineRunner loadData(MemberProfileRepository repository) {
 		return (args) -> {
-			// save a couple of customers
+			// save a couple of profiles
 			repository.save(new MemberProfile("robkle", "Kleinschmager"));
 			repository.save(new MemberProfile("mickni", "Knight"));
 			repository.save(new MemberProfile("geolaf", "Laforge"));
