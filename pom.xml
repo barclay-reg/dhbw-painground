@@ -15,7 +15,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.7.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -24,6 +24,27 @@
 		<java.version>1.8</java.version>
 		<vaadin.version>8.1.0</vaadin.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<!-- Many Vaadin add-ons are only available from vaadin-addons repository 
+				(aka vaadin.com/directory). -->
+			<id>vaadin-addons</id>
+			<url>http://maven.vaadin.com/vaadin-addons</url>
+		</repository>
+		<repository>
+			<!-- Repository for Vaadin prerelease versions -->
+			<id>vaadin-prereleases</id>
+			<url>http://maven.vaadin.com/vaadin-prereleases</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<!-- Repository for Vaadin prerelease versions -->
+			<id>vaadin-prereleases</id>
+			<url>http://maven.vaadin.com/vaadin-prereleases</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<dependencies>
 		<dependency>
@@ -35,9 +56,9 @@
 			<artifactId>spring-boot-starter-jersey</artifactId>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jooq</artifactId>
@@ -54,19 +75,28 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 		<!-- utility libraries -->
 		<dependency>
-		  <groupId>com.google.guava</groupId>
-		  <artifactId>guava</artifactId>
-		  <version>23.0</version>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>23.0</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-lang3</artifactId>
-		    <version>3.6</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.6</version>
 		</dependency>
 		<!-- END utility libraries -->
+
+		<!-- Vaadin Addons -->
+		<dependency>
+			<groupId>com.github.appreciated</groupId>
+			<artifactId>app-layout-addon</artifactId>
+			<version>0.9.4</version>
+		</dependency>
+		
+		<!-- END Vaadin Addons -->
 
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -98,7 +128,27 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- Vaadin maven plugin for client-side compilation -->
+			<plugin>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-maven-plugin</artifactId>
+				<version>${vaadin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>update-widgetset</goal>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- The widgetset compilation mode (local / fetch from CDN / CDN only). 
+						The allowed values are "local", "fetch" and "cdn". -->
+					<widgetsetMode>fetch</widgetsetMode>
+				</configuration>
+			</plugin>
 		</plugins>
+
 	</build>
 
 
