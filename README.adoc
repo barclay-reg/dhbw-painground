@@ -5,6 +5,7 @@
 === Idea
 
 Have an Application to manage the knowledge/skills of members withina any organisation.
+One new line
 
 === Development
 
