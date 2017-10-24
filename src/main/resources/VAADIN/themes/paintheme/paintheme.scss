@@ -1,0 +1,11 @@
+@import "../valo/valo.scss";
+@import "../../addons/app-layout/app-layout.scss";
+
+@mixin paintheme {
+  @include valo;
+  @include app-layout;
+
+  .app-layout-material-design .app-layout-round-image {
+    border-radius: 0;
+}
+}

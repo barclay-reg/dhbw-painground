@@ -93,7 +93,7 @@
 		<dependency>
 			<groupId>com.github.appreciated</groupId>
 			<artifactId>app-layout-addon</artifactId>
-			<version>0.9.4</version>
+			<version>0.9.10</version>
 		</dependency>
 		
 		<!-- END Vaadin Addons -->
@@ -128,6 +128,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>
+                                ${basedir}/src/main/resources/VAADIN/
+                            </directory>
+                            <includes>
+                                <include>widgetsets/**/*</include>
+                                <include>themes/**/*.css</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
 			<!-- Vaadin maven plugin for client-side compilation -->
 			<plugin>
 				<groupId>com.vaadin</groupId>
@@ -138,6 +155,8 @@
 						<goals>
 							<goal>update-widgetset</goal>
 							<goal>compile</goal>
+							<goal>update-theme</goal>
+                        		<goal>compile-theme</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -145,6 +164,7 @@
 					<!-- The widgetset compilation mode (local / fetch from CDN / CDN only). 
 						The allowed values are "local", "fetch" and "cdn". -->
 					<widgetsetMode>fetch</widgetsetMode>
+					<warSourceDirectory>${basedir}/src/main/resources</warSourceDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
