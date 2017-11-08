@@ -55,6 +55,8 @@ public class MemberProfileList extends HorizontalLayout implements View {
 		addComponent(grid);
 	    
 	    listCustomers();
+	    
+	    // mehr ist nicht zu tun
 		
 	}
 	

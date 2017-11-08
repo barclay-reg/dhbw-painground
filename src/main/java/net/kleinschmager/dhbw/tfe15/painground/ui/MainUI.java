@@ -1,5 +1,5 @@
 /**
- * 
+ * copyright by Robert Kleinschmager
  */
 package net.kleinschmager.dhbw.tfe15.painground.ui;
 
@@ -35,6 +35,9 @@ import com.vaadin.ui.VerticalLayout;
 import net.kleinschmager.dhbw.tfe15.painground.ui.views.MemberProfileList;
 
 /**
+ * Entry Point to the UI, describing the {@link AppLayout} frame and wire the
+ * {@link SpringNavigator} with the Menu, which is rendered by {@link AppLayout}
+ * 
  * @author robertkleinschmager
  *
  */
@@ -46,53 +49,51 @@ import net.kleinschmager.dhbw.tfe15.painground.ui.views.MemberProfileList;
 @Push
 public class MainUI extends UI {
 
-	
-	private VerticalLayout holder;
-	
+	/**
+	 * the mainContent of this UI 
+	 */
+	private VerticalLayout mainContent;
+
 	@Autowired
 	SpringNavigator springNavigator;
-	
+
 	@Value("${painground.app.version}")
-    private String applicationVersion;
-	
-		
+	private String applicationVersion;
+
 	@Override
 	protected void init(VaadinRequest request) {
-		
-		holder = new VerticalLayout();
-        holder.setMargin(false);
-        setAppLayout(Behaviour.LEFT);
-        setContent(holder);
-        holder.setSizeFull();
 
-	}
-	
+		mainContent = new VerticalLayout();
+		mainContent.setMargin(false);
+		setAppLayout(Behaviour.LEFT);
+		setContent(mainContent);
+		mainContent.setSizeFull();
+
+	} // end init method
+
 	private void setAppLayout(Behaviour variant) {
-        holder.removeAllComponents();
+		mainContent.removeAllComponents();
 
-
-        AppLayout appLayout = AppLayoutBuilder.get()
-                .withBehaviour(Behaviour.LEFT_RESPONSIVE_HYBRID)
-                .withTitle("Peoples Knowledge")
-                // needed to tell springNavigator, where to render the views
-                .withNavigatorProducer(panel -> {
-                		springNavigator.init(this, panel);
-                		return springNavigator;
-                } )
-                .withDesign(AppBarDesign.MATERIAL)
-                .add(new MenuHeader("PainGround", "Version " + applicationVersion, new ThemeResource("images/dont-panic-alpha.png")), HEADER)
-                // needed to provide the Caption and ViewName
-                .withNavigationElementInfoProvider(aClass -> new NavigationElementInfo(
-                        Optional.ofNullable(aClass.getAnnotation(MenuCaption.class)) // Caption
-                                .map(menuElement -> menuElement.value())
-                                .orElse(aClass.getAnnotation(SpringView.class).name()),
-                        Optional.ofNullable(aClass.getAnnotation(MenuIcon.class))  // Icon
-                                .map(menuElement -> menuElement.value())
-                                .orElse(null),
-                        aClass.getAnnotation(SpringView.class).name()) /*ViewName / url*/)
-                .add(MemberProfileList.class, VaadinIcons.HOME)
-                //.withDefaultNavigationView(MemberProfileList.class)
-                .build();
-        holder.addComponent(appLayout);
-    }
-}
+		AppLayout appLayout = AppLayoutBuilder.get().withBehaviour(Behaviour.LEFT_RESPONSIVE_HYBRID)
+				.withTitle("Peoples Knowledge")
+				// needed to tell springNavigator, where to render the views
+				.withNavigatorProducer(panel -> {
+					springNavigator.init(this, panel);
+					return springNavigator;
+				}).withDesign(AppBarDesign.MATERIAL)
+				.add(new MenuHeader("PainGround", "Version " + applicationVersion,
+						new ThemeResource("images/dont-panic-alpha.png")), HEADER)
+				// needed to provide the Caption and Icon
+				.withNavigationElementInfoProvider(aClass -> new NavigationElementInfo(
+						Optional.ofNullable(aClass.getAnnotation(MenuCaption.class)) // Caption
+								.map(menuElement -> menuElement.value())
+								.orElse(aClass.getAnnotation(SpringView.class).name()),
+						Optional.ofNullable(aClass.getAnnotation(MenuIcon.class)) // Icon
+								.map(menuElement -> menuElement.value()).orElse(null),
+						aClass.getAnnotation(SpringView.class).name()) /* ViewName / url */)
+				.add(MemberProfileList.class, VaadinIcons.HOME)
+				// .withDefaultNavigationView(MemberProfileList.class)
+				.build();
+		mainContent.addComponent(appLayout);
+	} // end setAppLayout method
+}// end class
