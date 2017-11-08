@@ -1,5 +1,8 @@
 = Painground
 
+image:https://travis-ci.org/barclay-reg/dhbw-painground.svg?branch=master[link=https://travis-ci.org/barclay-reg/dhbw-painground]
+
+
 == PeoplesKnowledge
 
 === Idea
