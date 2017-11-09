@@ -1,0 +1,16 @@
+language: java
+sudo: false
+install: true
+addons:
+  sonarcloud:
+    organization: "barclay-reg-github"
+    token:
+      secure: "eIWuAZCjmRCoc2ncE50vhMnPKsve/5ZSviPEelNr47NhI0mT6tlvFqPz5sZUkkjS599XZOgVzRJhtMZ91EKertW2Ccm3vSH97OgOcoyaZ35AZl1QjTyU6Kb2aASUBSVNE5xBeD7CCyIGMRsoabdfoTzkGBiyJ+7zAOfv5mVUe5RjZuH+67hQI1DBN+LtKWDmyR99ghr9k0FY2Ssg5/ED89iqLTBXngD8XI+WteLqVlI01hnMr90qk624gMbJTW4Zzdtm2LYUXg4Ur4BxMv+GT5qMcA8qcRgihuYgLnucch59NCORod+PpLJ3CxaPEm2pzMqKojYA2pOCScZxNHShQz/d4/pWTFfGOCuPil+c8IV+UNRO+kBfQb/8kaeRLGrX0ClPEqHf2RR9k4eB+4/uwO5KvHYMOeQX4/XojderRayS/u2xpdza5fObDbABD77sG30VLHFyVFYwP6AKvgcuAfzvu5Hz23SjVHuUBPjKGnywoT0/+s/d8vkPpCygqFnEiKTC/yJJ6reqw3yF8b7FZZSSJTFr9l90ir3D3L/zkraCpAAXW22PTvsxZzhfMWUZN8TtXCop/L+S+IQAlaYCftsPpTFCl1u6l+9i54Nxyi2wlFr+wFswtRX0GGEc2igKMchVRNhPp4sNOoQQhOKjdPxGevRZWlRq9Kk40JQvXWU="
+jdk:
+  - oraclejdk8
+script:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'

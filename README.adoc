@@ -1,5 +1,8 @@
 = Painground
 
+image:https://travis-ci.org/barclay-reg/dhbw-painground.svg?branch=master[Build Status, link=https://travis-ci.org/barclay-reg/dhbw-painground]
+image:https://sonarcloud.io/api/badges/gate?key=net.kleinschmager.dhbw.tfe15:painground[Quality Gate, link=https://sonarcloud.io/dashboard/index/net.kleinschmager.dhbw.tfe15:painground]
+
 == PeoplesKnowledge
 
 === Idea
