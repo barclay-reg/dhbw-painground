@@ -36,7 +36,7 @@ import net.kleinschmager.dhbw.tfe15.painground.ui.views.MemberProfileList;
 
 /**
  * Entry Point to the UI, describing the {@link AppLayout} frame and wire the
- * {@link SpringNavigator} with the Menu, which is rendered by {@link AppLayout}
+ * {@link SpringNavigator} into the menu, which is rendered by {@link AppLayout}
  * 
  * @author robertkleinschmager
  *
@@ -65,9 +65,11 @@ public class MainUI extends UI {
 
 		mainContent = new VerticalLayout();
 		mainContent.setMargin(false);
-		setAppLayout(Behaviour.LEFT);
-		setContent(mainContent);
 		mainContent.setSizeFull();
+
+		setAppLayout(Behaviour.LEFT);
+		
+		setContent(mainContent);
 
 	} // end init method
 
