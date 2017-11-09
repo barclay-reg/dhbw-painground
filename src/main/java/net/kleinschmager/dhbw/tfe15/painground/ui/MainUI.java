@@ -94,7 +94,7 @@ public class MainUI extends UI {
 								.map(menuElement -> menuElement.value()).orElse(null),
 						aClass.getAnnotation(SpringView.class).name()) /* ViewName / url */)
 				.add(MemberProfileList.class, VaadinIcons.HOME)
-				// .withDefaultNavigationView(MemberProfileList.class)
+				.withDefaultNavigationView(MemberProfileList.class)
 				.build();
 		mainContent.addComponent(appLayout);
 	} // end setAppLayout method
