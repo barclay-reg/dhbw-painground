@@ -1081,7 +1081,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.1.0";
+	content: "8.1.6";
 }
 
 .v-widget {
@@ -4938,6 +4938,10 @@ div.v-layout.v-horizontal.v-widget {
 .paintheme .v-filterselect .v-icon {
 	position: absolute;
 	pointer-events: none;
+}
+
+.paintheme .v-filterselect .v-icon.FontAwesome {
+	margin-left: 0px;
 }
 
 .paintheme .v-filterselect-error .v-filterselect-input {
@@ -11626,6 +11630,19 @@ div.v-layout.v-horizontal.v-widget {
 .paintheme .v-tree8:focus .v-tree8-row-selected.v-tree8-row-focused::before {
 	border-color: transparent;
 	box-shadow: inset 0 0 0 1px #c8dbed;
+}
+
+.paintheme .v-tree8-scroller-vertical {
+	border: none;
+}
+
+.paintheme .v-tree8-scroller-horizontal {
+	border: none;
+}
+
+.paintheme .v-tree8-header-deco, .paintheme .v-tree8-footer-deco, .paintheme .v-tree8-horizontal-scrollbar-deco {
+	border: none;
+	background: transparent;
 }
 
 .paintheme .v-treegrid {

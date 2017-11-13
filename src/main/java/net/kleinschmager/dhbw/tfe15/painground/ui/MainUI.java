@@ -45,7 +45,7 @@ import net.kleinschmager.dhbw.tfe15.painground.ui.views.MemberProfileList;
 @SpringViewDisplay
 @Theme("paintheme")
 @Viewport("initial-scale=1, maximum-scale=1")
-@Title("DHBW Painground - PeopleSkill")
+@Title("DHBW Painground - Peoples Knowledge")
 @Push
 public class MainUI extends UI {
 
