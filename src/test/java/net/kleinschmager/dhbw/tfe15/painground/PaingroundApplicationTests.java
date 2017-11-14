@@ -71,10 +71,21 @@ public class PaingroundApplicationTests extends FluentTest {
 
 	//private PhantomJSDriver webDriver = new PhantomJSDriver();
 	private ChromeDriver webDriver;
-
+   
 	@Override
 	public WebDriver newWebDriver() {
-		webDriver = new ChromeDriver();
+      
+     final ChromeOptions chromeOptions = new ChromeOptions();
+     chromeOptions.addArguments("--headless");
+     chromeOptions.addArguments("--disable-gpu");
+
+     final DesiredCapabilities dc = new DesiredCapabilities();
+     dc.setJavascriptEnabled(true);
+     dc.setCapability(
+        ChromeOptions.CAPABILITY, chromeOptions
+     );
+      
+		webDriver = new ChromeDriver(dc);
 		return webDriver;
 	}
 
