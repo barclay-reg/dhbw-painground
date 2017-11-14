@@ -24,15 +24,14 @@
 		<java.version>1.8</java.version>
 		<vaadin.version>8.1.6</vaadin.version>
 		<!-- cant use selenium 3.6 cause of bug about unknown-platform, can't use 3.7 cause of incompatibility with fluentlenium -->
-    		<selenium.version>3.5.3</selenium.version>
-    		<phantomjs.version>2.1.1</phantomjs.version>
-    		<fluentlenium.version>3.4.1</fluentlenium.version>
+		<selenium.version>3.5.3</selenium.version>
+		<phantomjs.version>2.1.1</phantomjs.version>
+		<fluentlenium.version>3.4.1</fluentlenium.version>
 	</properties>
 
 	<repositories>
 		<repository>
-			<!-- Many Vaadin add-ons are only available from vaadin-addons repository 
-				(aka vaadin.com/directory). -->
+			<!-- Many Vaadin add-ons are only available from vaadin-addons repository (aka vaadin.com/directory). -->
 			<id>vaadin-addons</id>
 			<url>http://maven.vaadin.com/vaadin-addons</url>
 		</repository>
@@ -101,7 +100,7 @@
 		<dependency>
 			<groupId>com.github.appreciated</groupId>
 			<artifactId>app-layout-addon</artifactId>
-			<version>0.9.10</version>
+			<version>0.9.15</version>
 		</dependency>
 
 		<!-- END Vaadin Addons -->
@@ -126,10 +125,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>org.fluentlenium</groupId>
-		    <artifactId>fluentlenium-junit</artifactId>
-		    <version>${fluentlenium.version}</version>
-		    <scope>test</scope>
+			<groupId>org.fluentlenium</groupId>
+			<artifactId>fluentlenium-junit</artifactId>
+			<version>${fluentlenium.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.github.detro</groupId>
@@ -138,15 +137,15 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>org.seleniumhq.selenium</groupId>
-		    <artifactId>selenium-chrome-driver</artifactId>
-		    <scope>test</scope>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-chrome-driver</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
-		   <groupId>io.github.bonigarcia</groupId>
-		   <artifactId>webdrivermanager</artifactId>
-		   <version>1.7.2</version>
-		   <scope>test</scope>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>1.7.2</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -170,7 +169,6 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.0.0</version>
 				<configuration>
 					<filesets>
 						<fileset>
@@ -208,8 +206,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-
 	</build>
-
-
 </project>

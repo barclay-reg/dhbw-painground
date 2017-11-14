@@ -17,6 +17,7 @@ import com.github.appreciated.app.layout.behaviour.Behaviour;
 import com.github.appreciated.app.layout.builder.AppLayoutBuilder;
 import com.github.appreciated.app.layout.builder.design.AppBarDesign;
 import com.github.appreciated.app.layout.builder.entities.NavigationElementInfo;
+import com.github.appreciated.app.layout.builder.providers.DefaultSpringNavigationElementInfoProvider;
 import com.github.appreciated.app.layout.component.MenuHeader;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
@@ -67,34 +68,29 @@ public class MainUI extends UI {
 		mainContent.setMargin(false);
 		mainContent.setSizeFull();
 
-		setAppLayout(Behaviour.LEFT);
+		setAppLayout();
 		
 		setContent(mainContent);
 
 	} // end init method
 
-	private void setAppLayout(Behaviour variant) {
+	private void setAppLayout() {
 		mainContent.removeAllComponents();
 
-		AppLayout appLayout = AppLayoutBuilder.get().withBehaviour(Behaviour.LEFT_RESPONSIVE_HYBRID)
-				.withTitle("Peoples Knowledge")
+		AppLayout appLayout = AppLayoutBuilder.get(Behaviour.LEFT_RESPONSIVE_HYBRID)
 				// needed to tell springNavigator, where to render the views
-				.withNavigatorProducer(panel -> {
+				.withCDI(true)
+                .withNavigationElementInfoProvider(new DefaultSpringNavigationElementInfoProvider())
+                .withNavigatorProducer(panel -> {
 					springNavigator.init(this, panel);
 					return springNavigator;
-				}).withDesign(AppBarDesign.MATERIAL)
+				})
+                .withTitle("Peoples Knowledge")
+				.withDesign(AppBarDesign.MATERIAL)
 				.add(new MenuHeader("PainGround", "Version " + applicationVersion,
-						new ThemeResource("images/dont-panic-alpha.png")), HEADER)
-				// needed to provide the Caption and Icon
-				.withNavigationElementInfoProvider(aClass -> new NavigationElementInfo(
-						Optional.ofNullable(aClass.getAnnotation(MenuCaption.class)) // Caption
-								.map(menuElement -> menuElement.value())
-								.orElse(aClass.getAnnotation(SpringView.class).name()),
-						Optional.ofNullable(aClass.getAnnotation(MenuIcon.class)) // Icon
-								.map(menuElement -> menuElement.value()).orElse(null),
-						aClass.getAnnotation(SpringView.class).name()) /* ViewName / url */)
-				.add(MemberProfileList.class, VaadinIcons.HOME)
-				.withDefaultNavigationView(MemberProfileList.class)
+						new ThemeResource("images/dont-panic-alpha.png")), HEADER)				
+				// start defining the contained views, first will be loaded on start
+				.add(MemberProfileList.class)
 				.build();
 		mainContent.addComponent(appLayout);
 	} // end setAppLayout method
