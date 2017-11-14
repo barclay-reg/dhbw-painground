@@ -10,7 +10,7 @@ addons:
 jdk:
   - oraclejdk8
 install:
-  - sudo ln -s /usr/bin/google-chrome-stable /usr/bin/google-chrome
+  - sudo ln -s /usr/bin/google-chrome /usr/bin/google-chrome-stable
 script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 cache:
