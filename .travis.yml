@@ -11,6 +11,7 @@ jdk:
   - oraclejdk8
 install:
   - sudo ls -lsa /usr/bin/google-chrome
+  - sudo ls -lsa /etc/alternatives/google-chrome
 script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 cache:
