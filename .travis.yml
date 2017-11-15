@@ -1,7 +1,6 @@
 language: java
 dist: trusty
 sudo: false
-install: true
 addons:
   sonarcloud:
     organization: "barclay-reg-github"
@@ -10,8 +9,6 @@ addons:
   chrome: stable      
 jdk:
   - oraclejdk8
-before_install:
-  google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 &
 script:
   - mvn -B clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 cache:

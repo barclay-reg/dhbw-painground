@@ -24,14 +24,15 @@ import net.kleinschmager.dhbw.tfe15.painground.persistence.repository.MemberProf
  * @author robertkleinschmager
  *
  */
-@SpringView( name= MemberProfileList.VIEW_NAME)
+@SpringView( name = MemberProfileList.VIEW_NAME)
 @MenuCaption("Profiles")
 @MenuIcon(VaadinIcons.LIST)
 public class MemberProfileList extends HorizontalLayout implements View {
 
 	private static final long serialVersionUID = -1824693214883003192L;
 
-	public static final String VIEW_NAME = "memberprofile-list";
+	// the appl-layout default view must have the name ""
+	public static final String VIEW_NAME = "";
 	
 	@Autowired
 	MemberProfileRepository repo;
