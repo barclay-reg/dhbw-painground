@@ -3,7 +3,7 @@ dist: trusty
 sudo: false
 addons:
   sonarcloud:
-    organization: "barclay-reg-github"
+    organization: SONAR_ORGANISATION
   chrome: stable      
 jdk:
   - oraclejdk8
