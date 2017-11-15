@@ -39,34 +39,32 @@ public class PaingroundApplication {
 	public CommandLineRunner loadData(MemberProfileRepository repository) {
 		return (args) -> {
 			
-			saveSomeProfile(repository);
-			
-			// STEP 2
-			
-			// fetch all profiles
-			log.info("MemberProfiles found with findAll():");
-			log.info("-------------------------------");
-			for (MemberProfile profile : repository.findAll()) {
-				log.info(profile.toString());
-			}
-			log.info("");
-
-			// STEP 3
-			
-			// fetch an individual customer by ID
-			MemberProfile profile = repository.findOne(1L);
-			log.info("Profile found with findOne(1L):");
-			log.info("--------------------------------");
-			log.info(profile.toString());
-			log.info("");
-
+			deleteAllExistingProfiles(repository);
+			saveSomeProfiles(repository);
+			fetchAndPrintAllProfiles(repository);
 		};
 	}
 
-	private void saveSomeProfile(MemberProfileRepository repository) {
+	private void deleteAllExistingProfiles(MemberProfileRepository repository) {
+		repository.deleteAll();
+		repository.flush();
+	}
+
+	private void fetchAndPrintAllProfiles(MemberProfileRepository repository) {
+		// fetch all profiles
+		log.info("MemberProfiles found with findAll():");
+		log.info("-------------------------------");
+		for (MemberProfile profile : repository.findAll()) {
+			log.info(profile.toString());
+		}
+		log.info("");
+	}
+
+	private void saveSomeProfiles(MemberProfileRepository repository) {
 		// save a couple of profiles
 		repository.save(new MemberProfile("robkle", "Kleinschmager"));
 		repository.save(new MemberProfile("mickni", "Knight"));
 		repository.save(new MemberProfile("geolaf", "Laforge"));
+		repository.flush();
 	}
 }
