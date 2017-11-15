@@ -72,7 +72,15 @@ public class MainUI extends UI {
 		
 		setContent(mainContent);
 
+		switchToDefaultViewIfNecessary();
+
 	} // end init method
+
+	private void switchToDefaultViewIfNecessary() {
+		if ("".equals(springNavigator.getState())) {
+			springNavigator.navigateTo(MemberProfileList.VIEW_NAME);
+		}
+	}
 
 	private void setAppLayout() {
 		mainContent.removeAllComponents();
