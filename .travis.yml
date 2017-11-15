@@ -4,8 +4,6 @@ sudo: false
 addons:
   sonarcloud:
     organization: "barclay-reg-github"
-    token:
-      secure: SONAR_SECURE_TOKEN
   chrome: stable      
 jdk:
   - oraclejdk8
