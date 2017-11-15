@@ -6,7 +6,7 @@ addons:
 jdk:
   - oraclejdk8
 script:
-  - mvn -B clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.organization=$SONAR_ORGANISATION -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=https://sonarcloud.io
+  - mvn -B clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=https://sonarcloud.io
 cache:
   directories:
     - '$HOME/.m2/repository'
