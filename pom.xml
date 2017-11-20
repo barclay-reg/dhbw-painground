@@ -147,6 +147,7 @@
 			<version>1.7.2</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- END additional for selenium tests -->
 	</dependencies>
 
 	<dependencyManagement>
