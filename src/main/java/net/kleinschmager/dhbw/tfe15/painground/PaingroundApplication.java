@@ -3,6 +3,11 @@
  */
 package net.kleinschmager.dhbw.tfe15.painground;
 
+import java.io.File;
+import java.net.URL;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 
 import kr.pe.kwonnam.slf4jlambda.LambdaLogger;
 import kr.pe.kwonnam.slf4jlambda.LambdaLoggerFactory;
+import net.kleinschmager.dhbw.tfe15.painground.business.MemberProfileCsvImporter;
 import net.kleinschmager.dhbw.tfe15.painground.persistence.model.MemberProfile;
 import net.kleinschmager.dhbw.tfe15.painground.persistence.repository.MemberProfileRepository;
 
@@ -17,6 +23,9 @@ import net.kleinschmager.dhbw.tfe15.painground.persistence.repository.MemberProf
 public class PaingroundApplication {
 	
 	private static final LambdaLogger log = LambdaLoggerFactory.getLogger(PaingroundApplication.class);
+	
+	@Autowired
+	MemberProfileCsvImporter csvImporter;
 
 	/**
 	 * the main method
@@ -39,7 +48,8 @@ public class PaingroundApplication {
 		return args -> {
 			
 			deleteAllExistingProfiles(repository);
-			saveSomeProfiles(repository);
+			//saveSomeProfiles(repository);
+			importProfiles(repository);
 			fetchAndPrintAllProfiles(repository);
 		};
 	}
@@ -64,5 +74,25 @@ public class PaingroundApplication {
 		repository.save(new MemberProfile("mickni", "Knight"));
 		repository.save(new MemberProfile("geolaf", "Laforge"));
 		repository.flush();
+	}
+	
+	private void importProfiles(MemberProfileRepository repository) {
+		
+		URL inputFileUrl = PaingroundApplication.class.getClassLoader().getResource("db/initial_data.csv");
+		
+		File inputFile = new File(inputFileUrl.getFile());
+		
+		log.info(() -> "Reading file: " + inputFile.getAbsolutePath());
+		
+		List<MemberProfile> profiles = csvImporter.importFile(inputFile);
+		
+		for (MemberProfile memberProfile : profiles) {
+			repository.save(memberProfile);
+		}
+		
+		log.info(() -> "Imported " + profiles.size() + " profiles");
+		
+		repository.flush();
+		
 	}
 }

@@ -94,6 +94,13 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.6</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>commons-io</groupId>
+		  	<artifactId>commons-io</artifactId>
+		  	<version>2.5</version>
+		</dependency>
+		
 		<!-- END utility libraries -->
 		
 		<!-- better slf4j logging -->
