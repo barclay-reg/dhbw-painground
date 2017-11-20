@@ -3,21 +3,20 @@
  */
 package net.kleinschmager.dhbw.tfe15.painground;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import kr.pe.kwonnam.slf4jlambda.LambdaLogger;
+import kr.pe.kwonnam.slf4jlambda.LambdaLoggerFactory;
 import net.kleinschmager.dhbw.tfe15.painground.persistence.model.MemberProfile;
 import net.kleinschmager.dhbw.tfe15.painground.persistence.repository.MemberProfileRepository;
 
 @SpringBootApplication
 public class PaingroundApplication {
 	
-	private static final Logger log = LoggerFactory.getLogger(PaingroundApplication.class);
-
+	private static final LambdaLogger log = LambdaLoggerFactory.getLogger(PaingroundApplication.class);
 
 	/**
 	 * the main method
@@ -37,7 +36,7 @@ public class PaingroundApplication {
 	 */
 	@Bean
 	public CommandLineRunner loadData(MemberProfileRepository repository) {
-		return (args) -> {
+		return args -> {
 			
 			deleteAllExistingProfiles(repository);
 			saveSomeProfiles(repository);
@@ -51,13 +50,12 @@ public class PaingroundApplication {
 	}
 
 	private void fetchAndPrintAllProfiles(MemberProfileRepository repository) {
-		// fetch all profiles
-		log.info("MemberProfiles found with findAll():");
-		log.info("-------------------------------");
+		log.info(() -> "MemberProfiles found with findAll():");
+		log.info(() -> "-------------------------------");
 		for (MemberProfile profile : repository.findAll()) {
-			log.info(profile.toString());
+			log.info(() -> "Profile: " + profile.toString());
 		}
-		log.info("");
+		log.info(() -> "");
 	}
 
 	private void saveSomeProfiles(MemberProfileRepository repository) {
