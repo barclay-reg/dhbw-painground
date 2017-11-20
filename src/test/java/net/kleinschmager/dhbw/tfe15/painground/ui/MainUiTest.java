@@ -3,20 +3,23 @@
  */
 package net.kleinschmager.dhbw.tfe15.painground.ui;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.fluentlenium.adapter.junit.FluentTest;
+import org.fluentlenium.configuration.ConfigurationProperties.TriggerMode;
 import org.fluentlenium.configuration.FluentConfiguration;
 import org.fluentlenium.core.annotation.Page;
-import org.fluentlenium.configuration.ConfigurationProperties.TriggerMode;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -41,11 +44,15 @@ import net.kleinschmager.dhbw.tfe15.painground.ui.pages.MemberProfilePage;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@FluentConfiguration(screenshotMode = TriggerMode.AUTOMATIC_ON_FAIL, screenshotPath = "target/ui-test-failures/")
+@FluentConfiguration(
+		screenshotMode = TriggerMode.AUTOMATIC_ON_FAIL, 
+		screenshotPath = "target/ui-test-failures/")
 public class MainUiTest extends FluentTest {
 
-	private static final MemberProfile TEST_ITEM_1 = new MemberProfile("testId1", "Surname 1");
-	private static final MemberProfile TEST_ITEM_2 = new MemberProfile("testId2", "Surname 2");
+	private static final String TEST_SURNAME_2 = "Surname 2";
+	private static final String TEST_SURNAME_1 = "Surname 1";
+	private static final MemberProfile TEST_ITEM_1 = new MemberProfile("testId1", TEST_SURNAME_1);
+	private static final MemberProfile TEST_ITEM_2 = new MemberProfile("testId2", TEST_SURNAME_2);
 
 	private String WAIT_FOR_VAADIN_SCRIPT = "if (window.vaadin == null) {" + "  return true;" + "}"
 			+ "var clients = window.vaadin.clients;" + "if (clients) {" + "  for (var client in clients) {"
@@ -82,8 +89,9 @@ public class MainUiTest extends FluentTest {
 		webDriver.manage().window().setSize(new Dimension(1280,1024));
 		return webDriver;
 	}
-
-	private String getUrlOfEmbeddedServer() {
+	
+	@Override
+	public String getBaseUrl() {
 		return "http://localhost:" + randomPort;
 	}
 
@@ -108,7 +116,7 @@ public class MainUiTest extends FluentTest {
 
 	@Test
 	public void loadDefaultPageAndMakeScreenshot() throws IOException {
-		goTo(getUrlOfEmbeddedServer());
+		goTo(getBaseUrl());
 		waitForVaadin();
 
 		File screenshot = webDriver.getScreenshotAs(OutputType.FILE);
@@ -116,21 +124,41 @@ public class MainUiTest extends FluentTest {
 	}
 	
 	@Test
+	public void testGridSize() throws IOException {
+	
+		// GIVEN
+		// WHEN
+		goTo(memberProfilePage);
+		waitForVaadin();
+		// THEN
+		assertEquals("Grid row count should be match", 2, memberProfilePage.getGridRowCount());
+		assertEquals("Grid column count should match", 6, memberProfilePage.getGridColumnCount());
+		
+	}
+	
+	@Test
 	public void testGridSorting() throws IOException {
-		goTo(getUrlOfEmbeddedServer());
+		
+		// GIVEN
+		// WHEN
+		goTo(getBaseUrl());
 		waitForVaadin();
 		
-		//goTo(memberProfilePage);
+		goTo(memberProfilePage);
+		waitForVaadin();
+		
 		
 		memberProfilePage.clickColumnHeaderSurname();
-
-		File screenshot = webDriver.getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshot, new File("target/screenshot_testcase_testGridSorting_1.png"));
-		memberProfilePage.clickColumnHeaderSurname();
-
-		File screenshot2 = webDriver.getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshot2, new File("target/screenshot_testcase_testGridSorting_2.png"));
+		waitForVaadin();
+		List<String> firstRowBefore = memberProfilePage.getRowContent(0);
 		
+		memberProfilePage.clickColumnHeaderSurname();
+		waitForVaadin();
+		List<String> firstRowAfter = memberProfilePage.getRowContent(0);
+		
+		// THEN
+		assertThat(TEST_SURNAME_1, equalTo(firstRowBefore.get(0)));
+		assertThat(TEST_SURNAME_2, equalTo(firstRowAfter.get(0)));
 	}
 	
 
