@@ -53,6 +53,7 @@ public class MemberProfileList extends HorizontalLayout implements View {
 
 		grid.setId(MAIN_COMPONENT_ID);
 	    grid.setSizeFull();
+	    grid.setColumnOrder("id", "memberId", "surName", "givenName", "dateOfBirth", "skills");
 		
 		addComponent(grid);
 	    

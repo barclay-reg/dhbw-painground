@@ -35,5 +35,11 @@
     			<column name="dateofbirth" type="DATE"/>
     		</addColumn>
     </changeSet>
+    <changeSet id="4" author="robkle">
+    		<comment>add list of skills (saved comma separated)</comment>
+    		<addColumn tableName="mp01_memberprofile">
+    			<column name="skills" type="CLOB"/>
+    		</addColumn>
+    </changeSet>
 
 </databaseChangeLog>
