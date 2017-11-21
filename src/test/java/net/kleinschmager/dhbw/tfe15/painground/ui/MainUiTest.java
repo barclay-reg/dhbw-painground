@@ -157,8 +157,8 @@ public class MainUiTest extends FluentTest {
 		List<String> firstRowAfter = memberProfilePage.getRowContent(0);
 		
 		// THEN
-		assertThat(TEST_SURNAME_1, equalTo(firstRowBefore.get(1)));
-		assertThat(TEST_SURNAME_2, equalTo(firstRowAfter.get(1)));
+		assertThat(TEST_SURNAME_1, equalTo(firstRowBefore.get(2)));
+		assertThat(TEST_SURNAME_2, equalTo(firstRowAfter.get(2)));
 	}
 	
 
