@@ -2,6 +2,7 @@ package net.kleinschmager.dhbw.tfe15.painground.ui.pages;
 
 import static org.fluentlenium.core.filter.FilterConstructor.withText;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 

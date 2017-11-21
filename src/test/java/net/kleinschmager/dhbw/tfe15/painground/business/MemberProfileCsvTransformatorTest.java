@@ -17,16 +17,15 @@ public class MemberProfileCsvTransformatorTest {
 	}
 
 	@Test
-	@Ignore
 	public void testTransformStringArrayArray() {
 		// GIVEN
 		// WHEN
+		cut.transform(new String[0][0]);
 		// THEN
 		fail("Not yet implemented");
 	}
 
 	@Test
-	@Ignore
 	public void testTransformStringArray() {
 		// GIVEN
 		// WHEN

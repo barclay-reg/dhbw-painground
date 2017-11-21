@@ -46,7 +46,7 @@ import net.kleinschmager.dhbw.tfe15.painground.ui.pages.MemberProfilePage;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @FluentConfiguration(
 		screenshotMode = TriggerMode.AUTOMATIC_ON_FAIL, 
-		screenshotPath = "target/ui-test-failures/")
+		screenshotPath = "target/ui-test-screenshots/")
 public class MainUiTest extends FluentTest {
 
 	private static final String TEST_SURNAME_2 = "Surname 2";
@@ -118,9 +118,8 @@ public class MainUiTest extends FluentTest {
 	public void loadDefaultPageAndMakeScreenshot() throws IOException {
 		goTo(getBaseUrl());
 		waitForVaadin();
-
-		File screenshot = webDriver.getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshot, new File("target/screenshot_testcase_loadDefaultPageAndMakeScreenshot.png"));
+		
+		takeScreenShot("screenshot_testcase_loadDefaultPageAndMakeScreenshot.png");
 	}
 	
 	@Test
@@ -133,7 +132,6 @@ public class MainUiTest extends FluentTest {
 		// THEN
 		assertEquals("Grid row count should be match", 2, memberProfilePage.getGridRowCount());
 		assertEquals("Grid column count should match", 7, memberProfilePage.getGridColumnCount());
-		
 	}
 	
 	@Test
