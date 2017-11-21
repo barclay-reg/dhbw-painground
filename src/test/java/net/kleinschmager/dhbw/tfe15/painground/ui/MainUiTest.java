@@ -132,7 +132,7 @@ public class MainUiTest extends FluentTest {
 		waitForVaadin();
 		// THEN
 		assertEquals("Grid row count should be match", 2, memberProfilePage.getGridRowCount());
-		assertEquals("Grid column count should match", 6, memberProfilePage.getGridColumnCount());
+		assertEquals("Grid column count should match", 7, memberProfilePage.getGridColumnCount());
 		
 	}
 	
@@ -157,8 +157,8 @@ public class MainUiTest extends FluentTest {
 		List<String> firstRowAfter = memberProfilePage.getRowContent(0);
 		
 		// THEN
-		assertThat(TEST_SURNAME_1, equalTo(firstRowBefore.get(0)));
-		assertThat(TEST_SURNAME_2, equalTo(firstRowAfter.get(0)));
+		assertThat(TEST_SURNAME_1, equalTo(firstRowBefore.get(1)));
+		assertThat(TEST_SURNAME_2, equalTo(firstRowAfter.get(1)));
 	}
 	
 
