@@ -2,9 +2,13 @@ package net.kleinschmager.dhbw.tfe15.painground.business;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import net.kleinschmager.dhbw.tfe15.painground.persistence.model.MemberProfile;
 
 public class MemberProfileCsvTransformatorTest {
 	
@@ -17,15 +21,17 @@ public class MemberProfileCsvTransformatorTest {
 	}
 
 	@Test
-	public void testTransformStringArrayArray() {
+	public void emptyArrayShouldReturnEmptyList() {
 		// GIVEN
+		String[][] input = new String[0][0];
 		// WHEN
-		cut.transform(new String[0][0]);
+		List<MemberProfile> result = cut.transform(input);
 		// THEN
-		fail("Not yet implemented");
+		assertTrue("Result should be empty list", result.isEmpty());
 	}
 
 	@Test
+	@Ignore
 	public void testTransformStringArray() {
 		// GIVEN
 		// WHEN
