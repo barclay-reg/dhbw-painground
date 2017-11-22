@@ -5,29 +5,22 @@ package net.kleinschmager.dhbw.tfe15.painground.ui;
 
 import static com.github.appreciated.app.layout.builder.AppLayoutBuilder.Position.HEADER;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.github.appreciated.app.layout.annotations.MenuCaption;
-import com.github.appreciated.app.layout.annotations.MenuIcon;
 import com.github.appreciated.app.layout.behaviour.AppLayout;
 import com.github.appreciated.app.layout.behaviour.Behaviour;
 import com.github.appreciated.app.layout.builder.AppLayoutBuilder;
 import com.github.appreciated.app.layout.builder.design.AppBarDesign;
-import com.github.appreciated.app.layout.builder.entities.NavigationElementInfo;
 import com.github.appreciated.app.layout.builder.providers.DefaultSpringNavigationElementInfoProvider;
 import com.github.appreciated.app.layout.component.MenuHeader;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.Viewport;
-import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
-import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.spring.navigator.SpringNavigator;
 import com.vaadin.ui.UI;
@@ -72,7 +65,15 @@ public class MainUI extends UI {
 		
 		setContent(mainContent);
 
+		switchToDefaultViewIfNecessary();
+
 	} // end init method
+
+	private void switchToDefaultViewIfNecessary() {
+		if ("".equals(springNavigator.getState())) {
+			springNavigator.navigateTo(MemberProfileList.VIEW_NAME);
+		}
+	}
 
 	private void setAppLayout() {
 		mainContent.removeAllComponents();

@@ -45,7 +45,7 @@ public class MemberProfile {
 	}
 	
 	@Id
-	// using GenerationType.IDENTITY must alogn with liquibase AUTOINCREMENT .. no sequence
+	// using GenerationType.IDENTITY must along with liquibase AUTOINCREMENT .. no sequence
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
@@ -64,7 +64,11 @@ public class MemberProfile {
     @Column(nullable=true, name="image")
     private byte[] picture;
     
-    public Long getId() {
+    @Column(nullable=true, name="skills")
+    private String skills;
+   
+
+	public Long getId() {
 		return id;
 	}
 
@@ -110,6 +114,15 @@ public class MemberProfile {
 
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
+	}
+	
+	 
+    public String getSkills() {
+		return skills;
+	}
+
+	public void setSkills(String skills) {
+		this.skills = skills;
 	}
 	
 	@Override

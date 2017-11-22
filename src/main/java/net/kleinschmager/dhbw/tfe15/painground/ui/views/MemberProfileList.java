@@ -31,8 +31,10 @@ public class MemberProfileList extends HorizontalLayout implements View {
 
 	private static final long serialVersionUID = -1824693214883003192L;
 
-	// the appl-layout default view must have the name ""
-	public static final String VIEW_NAME = "";
+	// the app-layout default view must have the name ""
+	public static final String VIEW_NAME = "member-profile-list-view";
+	
+	public static final String MAIN_COMPONENT_ID = "member-profile-list";
 	
 	@Autowired
 	MemberProfileRepository repo;
@@ -49,19 +51,16 @@ public class MemberProfileList extends HorizontalLayout implements View {
 		
 		setSizeFull();
 
-		grid.setCaption("List of Profiles");
-	    //grid.setWidth(100, Unit.PERCENTAGE);
+		grid.setId(MAIN_COMPONENT_ID);
 	    grid.setSizeFull();
+	    grid.setColumnOrder("id", "memberId", "surName", "givenName", "dateOfBirth", "skills");
 		
 		addComponent(grid);
 	    
-	    listCustomers();
-	    
-	    // mehr ist nicht zu tun
-		
+	    loadAndDisplayMemberProfiles();
 	}
 	
-	private void listCustomers() {
+	private void loadAndDisplayMemberProfiles() {
 	    grid.setItems(repo.findAll());
 	}
 
