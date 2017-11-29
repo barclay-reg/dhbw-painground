@@ -23,50 +23,52 @@ import com.google.common.base.Preconditions;
  * @author robertkleinschmager
  */
 @Entity
-@Table(name="mp01_memberprofile")
+@Table(name = "mp01_memberprofile")
 public class MemberProfile {
 
 	protected MemberProfile() {
 		// default constructor is protected, as it should onlz be used by JPA
 	}
-	
+
 	/**
 	 * Constructor to use within the rest of all code
 	 * 
-	 * @param memberId the unique id (businesskey) for this member
-	 * @param surName the surename (family name) of this member
+	 * @param memberId
+	 *            the unique id (businesskey) for this member
+	 * @param surName
+	 *            the surename (family name) of this member
 	 */
-	public MemberProfile(@NotNull String memberId,@NotNull String surName) {
+	public MemberProfile(@NotNull String memberId, @NotNull String surName) {
 		Preconditions.checkNotNull(memberId);
 		Preconditions.checkNotNull(surName);
-		
+
 		this.memberId = memberId;
 		this.surName = surName;
 	}
-	
-	@Id
-	// using GenerationType.IDENTITY must along with liquibase AUTOINCREMENT .. no sequence
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
 
-	@Column(unique=true, nullable=false, name="memberid", length=50)
+	@Id
+	// using GenerationType.IDENTITY must along with liquibase AUTOINCREMENT .. no
+	// sequence
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(unique = true, nullable = false, name = "memberid", length = 50)
 	private String memberId;
-	
-	@Column(nullable=true, name="givenname")
+
+	@Column(nullable = true, name = "givenname")
 	private String givenName;
-    
-    @Column(nullable=false, name="surname")
-    private String surName;
-    
-    @Column(nullable=true, name="dateofbirth")
-    private Date dateOfBirth;
-    
-    @Column(nullable=true, name="image")
-    private byte[] picture;
-    
-    @Column(nullable=true, name="skills")
-    private String skills;
-   
+
+	@Column(nullable = false, name = "surname")
+	private String surName;
+
+	@Column(nullable = true, name = "dateofbirth")
+	private Date dateOfBirth;
+
+	@Column(nullable = true, name = "image")
+	private byte[] picture;
+
+	@Column(nullable = true, name = "skills")
+	private String skills;
 
 	public Long getId() {
 		return id;
@@ -115,45 +117,45 @@ public class MemberProfile {
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
 	}
-	
-	 
-    public String getSkills() {
+
+	public String getSkills() {
 		return skills;
 	}
 
 	public void setSkills(String skills) {
 		this.skills = skills;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		
+
 		// using the "business key" strategy of the ID dilemma
-		// see http://www.onjava.com/pub/a/onjava/2006/09/13/dont-let-hibernate-steal-your-identity.html
-		
+		// see
+		// http://www.onjava.com/pub/a/onjava/2006/09/13/dont-let-hibernate-steal-your-identity.html
+
 		if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof MemberProfile)) {
-            return false;
-        }
-        MemberProfile that = (MemberProfile) obj;
-        EqualsBuilder eb = new EqualsBuilder();
-        eb.append(this.getMemberId(), that.getMemberId());
-        
-        return eb.isEquals();
+			return true;
+		}
+		if (!(obj instanceof MemberProfile)) {
+			return false;
+		}
+		MemberProfile that = (MemberProfile) obj;
+		EqualsBuilder eb = new EqualsBuilder();
+		eb.append(this.getMemberId(), that.getMemberId());
+
+		return eb.isEquals();
 	}
-	
+
 	@Override
-    public int hashCode() {
-        HashCodeBuilder hcb = new HashCodeBuilder();
-        hcb.append(this.memberId);
-        return hcb.toHashCode();
-    }
-	
+	public int hashCode() {
+		HashCodeBuilder hcb = new HashCodeBuilder();
+		hcb.append(this.memberId);
+		return hcb.toHashCode();
+	}
+
 	@Override
-    public String toString() {
-	    	return ReflectionToStringBuilder.toStringExclude(this, "picture");
-    }
-	
+	public String toString() {
+		return ReflectionToStringBuilder.toStringExclude(this, "picture");
+	}
+
 }
