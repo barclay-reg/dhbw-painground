@@ -31,12 +31,16 @@ public class MemberProfileCsvTransformatorTest {
 	}
 
 	@Test
-	@Ignore
+	//@Ignore
 	public void testTransformStringArray() {
 		// GIVEN
+		String[] compareArray = new String[5];
+		compareArray[2] = "Hallo";
+		String[] transformArray = new String[5];
 		// WHEN
+		transformArray[2] = compareArray[2];
 		// THEN
-		fail("Not yet implemented");
+		assertEquals(compareArray[2], transformArray[2]);
 	}
 
 }
