@@ -7,6 +7,7 @@ import static org.apache.commons.lang3.StringUtils.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +40,7 @@ public class MemberProfileCsvTransformator {
 				result.add(profile.get());
 				
 			} else {
-				log.error("Unable to transform to MemberProfile: " + multilineCsv[i] );
+				log.error("Unable to transform to MemberProfile: " + Arrays.toString(multilineCsv[i]) );
 			}
 		}
 		
