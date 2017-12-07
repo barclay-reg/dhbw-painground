@@ -26,13 +26,17 @@ import net.kleinschmager.dhbw.tfe15.painground.persistence.model.MemberProfile;
  *
  */
 @Component
-public class MemberProfileCsvImporter {
+public class MemberProfileCsvImporter implements CsvImporter {
 
 	private static final LambdaLogger log = LambdaLoggerFactory.getLogger(MemberProfileCsvImporter.class);
 	
 	@Autowired
 	MemberProfileCsvTransformator csvTransformator;
 
+	/* (non-Javadoc)
+	 * @see net.kleinschmager.dhbw.tfe15.painground.business.CsvImporter#importFile(java.io.File)
+	 */
+	@Override
 	public List<MemberProfile> importFile(File csvFile) {
 		
 		try (FileInputStream fis = new FileInputStream(csvFile)) {

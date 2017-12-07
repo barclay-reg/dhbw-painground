@@ -29,12 +29,13 @@ import net.kleinschmager.dhbw.tfe15.painground.persistence.model.MemberProfile;
  */
 public class MemberProfileCsvImporterTest {
 
-	private MemberProfileCsvImporter sut;
+	private CsvImporter sut;
 
 	@Before
 	public void setUp() throws Exception {
-		this.sut = new MemberProfileCsvImporter();
-		this.sut.setCsvTransformator(new MemberProfileCsvTransformator());
+		this.sut = new AlternativeMemberProfileCsvImporter();
+		//this.sut = new MemberProfileCsvImporter();
+		//this.sut.setCsvTransformator(new MemberProfileCsvTransformator());
 
 	}
 

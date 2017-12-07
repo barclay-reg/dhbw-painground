@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 
 import kr.pe.kwonnam.slf4jlambda.LambdaLogger;
 import kr.pe.kwonnam.slf4jlambda.LambdaLoggerFactory;
-import net.kleinschmager.dhbw.tfe15.painground.business.MemberProfileCsvImporter;
+import net.kleinschmager.dhbw.tfe15.painground.business.CsvImporter;
 import net.kleinschmager.dhbw.tfe15.painground.persistence.model.MemberProfile;
 import net.kleinschmager.dhbw.tfe15.painground.persistence.repository.MemberProfileRepository;
 
@@ -25,7 +25,7 @@ public class PaingroundApplication {
 	private static final LambdaLogger log = LambdaLoggerFactory.getLogger(PaingroundApplication.class);
 	
 	@Autowired
-	MemberProfileCsvImporter csvImporter;
+	CsvImporter csvImporter;
 
 	/**
 	 * the main method
