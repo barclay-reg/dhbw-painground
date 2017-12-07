@@ -23,7 +23,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<vaadin.version>8.1.6</vaadin.version>
-		<!-- cant use selenium 3.6 cause of bug about unknown-platform, can't use 3.7 cause of incompatibility with fluentlenium -->
+		<!-- cant use selenium 3.6 cause of bug about unknown-platform, can't use 
+			3.7 cause of incompatibility with fluentlenium -->
 		<selenium.version>3.5.3</selenium.version>
 		<phantomjs.version>2.1.1</phantomjs.version>
 		<fluentlenium.version>3.4.1</fluentlenium.version>
@@ -31,7 +32,8 @@
 
 	<repositories>
 		<repository>
-			<!-- Many Vaadin add-ons are only available from vaadin-addons repository (aka vaadin.com/directory). -->
+			<!-- Many Vaadin add-ons are only available from vaadin-addons repository 
+				(aka vaadin.com/directory). -->
 			<id>vaadin-addons</id>
 			<url>http://maven.vaadin.com/vaadin-addons</url>
 		</repository>
@@ -94,15 +96,20 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.6</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-io</groupId>
-		  	<artifactId>commons-io</artifactId>
-		  	<version>2.5</version>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.5</version>
+		</dependency>
+
 		<!-- END utility libraries -->
-		
+
 		<!-- better slf4j logging -->
 		<dependency>
 			<groupId>kr.pe.kwonnam.slf4j-lambda</groupId>
