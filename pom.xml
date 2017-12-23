@@ -22,7 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<vaadin.version>8.1.6</vaadin.version>
+		<vaadin.version>8.2.0</vaadin.version>
 		<!-- cant use selenium 3.6 cause of bug about unknown-platform, can't use 
 			3.7 cause of incompatibility with fluentlenium -->
 		<selenium.version>3.5.3</selenium.version>
@@ -121,7 +121,7 @@
 		<dependency>
 			<groupId>com.github.appreciated</groupId>
 			<artifactId>app-layout-addon</artifactId>
-			<version>0.9.15</version>
+			<version>0.9.19</version>
 		</dependency>
 
 		<!-- END Vaadin Addons -->
