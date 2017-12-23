@@ -33,9 +33,9 @@ public class MemberProfileCsvImporterTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.sut = new AlternativeMemberProfileCsvImporter();
-		//this.sut = new MemberProfileCsvImporter();
-		//this.sut.setCsvTransformator(new MemberProfileCsvTransformator());
+		//this.sut = new AlternativeMemberProfileCsvImporter();
+		this.sut = new MemberProfileCsvImporter();
+		((MemberProfileCsvImporter) this.sut).setCsvTransformator(new MemberProfileCsvTransformator());
 
 	}
 
@@ -93,7 +93,7 @@ public class MemberProfileCsvImporterTest {
 	}
 
 	@Test
-	public void missingFileShoulsFail() {
+	public void missingFileShouldFail() {
 
 		// GIVEN
 		File nonExistingFile = new File("dummy.txt");
