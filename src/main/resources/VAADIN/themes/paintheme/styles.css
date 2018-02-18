@@ -1081,7 +1081,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.2.0";
+	content: "8.3.1";
 }
 
 .v-widget {
@@ -1702,6 +1702,15 @@ div.v-layout.v-horizontal.v-widget {
 	.app-layout-behaviour-left-responsive-hybrid .app-layout-submenu-container {
 		padding-left: 0px !important;
 	}
+	.app-layout-behaviour-left-responsive-hybrid .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+		width: 64px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid .app-layout-menu-badge-button {
+		padding: 0px 16px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid .app-layout-menu-button-badge {
+		margin-left: -20px !important;
+	}
 }
 
 @media only screen and (min-width: 641px) {
@@ -1782,6 +1791,15 @@ div.v-layout.v-horizontal.v-widget {
 	.app-layout-behaviour-left-responsive-hybrid-no-app-bar .app-layout-submenu-container {
 		padding-left: 0px !important;
 	}
+	.app-layout-behaviour-left-responsive-hybrid-no-app-bar .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+		width: 64px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid-no-app-bar .app-layout-menu-badge-button {
+		padding: 0px 16px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid-no-app-bar .app-layout-menu-button-badge {
+		margin-left: -20px !important;
+	}
 }
 
 @media only screen and (min-width: 641px) {
@@ -1853,6 +1871,15 @@ div.v-layout.v-horizontal.v-widget {
 	}
 	.app-layout-behaviour-left-responsive-hybrid-overlay-no-app-bar .app-layout-submenu-container {
 		padding-left: 0px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid-overlay-no-app-bar .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+		width: 64px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid-overlay-no-app-bar .app-layout-menu-badge-button {
+		padding: 0px 16px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid-overlay-no-app-bar .app-layout-menu-button-badge {
+		margin-left: -20px !important;
 	}
 }
 
@@ -1950,6 +1977,15 @@ div.v-layout.v-horizontal.v-widget {
 		margin-right: -64px !important;
 		padding-right: 64px !important;
 	}
+	.app-layout-behaviour-left-responsive-small .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+		width: 64px !important;
+	}
+	.app-layout-behaviour-left-responsive-small .app-layout-menu-badge-button {
+		padding: 0px 16px !important;
+	}
+	.app-layout-behaviour-left-responsive-small .app-layout-menu-button-badge {
+		margin-left: -20px !important;
+	}
 }
 
 @media only screen and (min-width: 641px) {
@@ -2014,6 +2050,15 @@ div.v-layout.v-horizontal.v-widget {
 		margin-top: 0px !important;
 		margin-bottom: 0px !important;
 		padding-bottom: 0px !important;
+	}
+	.app-layout-behaviour-left-responsive-small-no-app-bar .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+		width: 64px !important;
+	}
+	.app-layout-behaviour-left-responsive-small-no-app-bar .app-layout-menu-badge-button {
+		padding: 0px 16px !important;
+	}
+	.app-layout-behaviour-left-responsive-small-no-app-bar .app-layout-menu-button-badge {
+		margin-left: -20px !important;
 	}
 }
 
@@ -2140,6 +2185,15 @@ div.v-layout.v-horizontal.v-widget {
 	.app-layout-behaviour-left-responsive-hybrid .app-layout-submenu-container {
 		padding-left: 0px !important;
 	}
+	.app-layout-behaviour-left-responsive-hybrid .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+		width: 64px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid .app-layout-menu-badge-button {
+		padding: 0px 16px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid .app-layout-menu-button-badge {
+		margin-left: -20px !important;
+	}
 }
 
 @media only screen and (min-width: 641px) {
@@ -2220,6 +2274,15 @@ div.v-layout.v-horizontal.v-widget {
 	.app-layout-behaviour-left-responsive-hybrid-no-app-bar .app-layout-submenu-container {
 		padding-left: 0px !important;
 	}
+	.app-layout-behaviour-left-responsive-hybrid-no-app-bar .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+		width: 64px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid-no-app-bar .app-layout-menu-badge-button {
+		padding: 0px 16px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid-no-app-bar .app-layout-menu-button-badge {
+		margin-left: -20px !important;
+	}
 }
 
 @media only screen and (min-width: 641px) {
@@ -2291,6 +2354,15 @@ div.v-layout.v-horizontal.v-widget {
 	}
 	.app-layout-behaviour-left-responsive-hybrid-overlay-no-app-bar .app-layout-submenu-container {
 		padding-left: 0px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid-overlay-no-app-bar .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+		width: 64px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid-overlay-no-app-bar .app-layout-menu-badge-button {
+		padding: 0px 16px !important;
+	}
+	.app-layout-behaviour-left-responsive-hybrid-overlay-no-app-bar .app-layout-menu-button-badge {
+		margin-left: -20px !important;
 	}
 }
 
@@ -2388,6 +2460,15 @@ div.v-layout.v-horizontal.v-widget {
 		margin-right: -64px !important;
 		padding-right: 64px !important;
 	}
+	.app-layout-behaviour-left-responsive-small .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+		width: 64px !important;
+	}
+	.app-layout-behaviour-left-responsive-small .app-layout-menu-badge-button {
+		padding: 0px 16px !important;
+	}
+	.app-layout-behaviour-left-responsive-small .app-layout-menu-button-badge {
+		margin-left: -20px !important;
+	}
 }
 
 @media only screen and (min-width: 641px) {
@@ -2452,6 +2533,15 @@ div.v-layout.v-horizontal.v-widget {
 		margin-top: 0px !important;
 		margin-bottom: 0px !important;
 		padding-bottom: 0px !important;
+	}
+	.app-layout-behaviour-left-responsive-small-no-app-bar .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+		width: 64px !important;
+	}
+	.app-layout-behaviour-left-responsive-small-no-app-bar .app-layout-menu-badge-button {
+		padding: 0px 16px !important;
+	}
+	.app-layout-behaviour-left-responsive-small-no-app-bar .app-layout-menu-button-badge {
+		margin-left: -20px !important;
 	}
 }
 
@@ -2574,6 +2664,31 @@ div.v-layout.v-horizontal.v-widget {
 
 .paintheme .app-drawer-1 {
 	width: 256px;
+}
+
+.paintheme .app-drawer-layout-1 app-drawer[opened][persistent] + .app-bar-application-content, .paintheme .app-drawer-layout-1 app-drawer[opened][persistent] + #contentContainer .app-bar-application-content {
+	left: 256px;
+}
+
+.paintheme .app-drawer-layout-1.small app-drawer[opened][persistent] + .app-bar-application-content, .paintheme .app-drawer-layout-1.small app-drawer[opened][persistent] + #contentContainer .app-bar-application-content {
+	left: 64px;
+}
+
+.paintheme .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+	width: 256px;
+}
+
+.paintheme .app-drawer-layout-1.small app-drawer[opened] .drawer-content {
+	width: 64px;
+}
+
+.paintheme .app-drawer-1 .app-drawer#scrim {
+	background: transparent !important;
+	box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.paintheme .app-toolbar-1 {
+	height: 64px;
 }
 
 .paintheme .app-layout-default-design .app-layout-menu-button-badge {
@@ -3252,6 +3367,22 @@ div.v-layout.v-horizontal.v-widget {
 
 .paintheme .app-layout-behaviour-left-hybrid.small .app-layout-submenu-container {
 	padding-left: 0px;
+}
+
+.paintheme .app-layout-behaviour-left-hybrid.small .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+	width: 64px !important;
+}
+
+.paintheme .app-layout-behaviour-left-hybrid.small .app-drawer-layout-1 app-drawer[opened][persistent] + .app-bar-application-content, .paintheme .app-layout-behaviour-left-hybrid.small .app-drawer-layout-1 app-drawer[opened][persistent] + #contentContainer .app-bar-application-content {
+	left: 64px !important;
+}
+
+.paintheme .app-layout-behaviour-left-hybrid.small .app-layout-menu-badge-button {
+	padding: 0px 16px;
+}
+
+.paintheme .app-layout-behaviour-left-hybrid.small .app-layout-menu-button-badge {
+	margin-left: -20px;
 }
 
 .paintheme .app-layout-behaviour-left-hybrid .app-bar-content {
@@ -17591,6 +17722,31 @@ div.v-layout.v-horizontal.v-widget {
 	width: 256px;
 }
 
+.paintheme .app-drawer-layout-1 app-drawer[opened][persistent] + .app-bar-application-content, .paintheme .app-drawer-layout-1 app-drawer[opened][persistent] + #contentContainer .app-bar-application-content {
+	left: 256px;
+}
+
+.paintheme .app-drawer-layout-1.small app-drawer[opened][persistent] + .app-bar-application-content, .paintheme .app-drawer-layout-1.small app-drawer[opened][persistent] + #contentContainer .app-bar-application-content {
+	left: 64px;
+}
+
+.paintheme .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+	width: 256px;
+}
+
+.paintheme .app-drawer-layout-1.small app-drawer[opened] .drawer-content {
+	width: 64px;
+}
+
+.paintheme .app-drawer-1 .app-drawer#scrim {
+	background: transparent !important;
+	box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.paintheme .app-toolbar-1 {
+	height: 64px;
+}
+
 .paintheme .app-layout-default-design .app-layout-menu-button-badge {
 	padding: 0 10px;
 	background: #197de1;
@@ -18267,6 +18423,22 @@ div.v-layout.v-horizontal.v-widget {
 
 .paintheme .app-layout-behaviour-left-hybrid.small .app-layout-submenu-container {
 	padding-left: 0px;
+}
+
+.paintheme .app-layout-behaviour-left-hybrid.small .app-drawer-layout-1 app-drawer[opened] .drawer-content {
+	width: 64px !important;
+}
+
+.paintheme .app-layout-behaviour-left-hybrid.small .app-drawer-layout-1 app-drawer[opened][persistent] + .app-bar-application-content, .paintheme .app-layout-behaviour-left-hybrid.small .app-drawer-layout-1 app-drawer[opened][persistent] + #contentContainer .app-bar-application-content {
+	left: 64px !important;
+}
+
+.paintheme .app-layout-behaviour-left-hybrid.small .app-layout-menu-badge-button {
+	padding: 0px 16px;
+}
+
+.paintheme .app-layout-behaviour-left-hybrid.small .app-layout-menu-button-badge {
+	margin-left: -20px;
 }
 
 .paintheme .app-layout-behaviour-left-hybrid .app-bar-content {

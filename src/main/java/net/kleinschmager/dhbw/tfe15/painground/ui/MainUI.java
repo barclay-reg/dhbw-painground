@@ -3,14 +3,14 @@
  */
 package net.kleinschmager.dhbw.tfe15.painground.ui;
 
-import static com.github.appreciated.app.layout.builder.AppLayoutBuilder.Position.HEADER;
+import static com.github.appreciated.app.layout.builder.AppLayoutConfiguration.Position.HEADER;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.github.appreciated.app.layout.behaviour.AppLayout;
+import com.github.appreciated.app.layout.builder.AppLayout;
+import com.github.appreciated.app.layout.behaviour.AppLayoutComponent;
 import com.github.appreciated.app.layout.behaviour.Behaviour;
-import com.github.appreciated.app.layout.builder.AppLayoutBuilder;
 import com.github.appreciated.app.layout.builder.design.AppBarDesign;
 import com.github.appreciated.app.layout.builder.providers.DefaultSpringNavigationElementInfoProvider;
 import com.github.appreciated.app.layout.component.MenuHeader;
@@ -23,6 +23,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.spring.navigator.SpringNavigator;
+import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
@@ -50,6 +51,9 @@ public class MainUI extends UI {
 
 	@Autowired
 	SpringNavigator springNavigator;
+	
+	@Autowired
+    SpringViewProvider viewProvider;
 
 	@Value("${painground.app.version}")
 	private String applicationVersion;
@@ -78,14 +82,14 @@ public class MainUI extends UI {
 	private void setAppLayout() {
 		mainContent.removeAllComponents();
 
-		AppLayout appLayout = AppLayoutBuilder.get(Behaviour.LEFT_RESPONSIVE_HYBRID)
+		AppLayoutComponent appLayout = AppLayout.getCDIBuilder(Behaviour.LEFT_RESPONSIVE_HYBRID)
+				.withViewProvider(() -> viewProvider)
 				// needed to tell springNavigator, where to render the views
-				.withCDI(true)
-                .withNavigationElementInfoProvider(new DefaultSpringNavigationElementInfoProvider())
-                .withNavigatorProducer(panel -> {
+				.withNavigationElementInfoProvider(new DefaultSpringNavigationElementInfoProvider())
+				.withNavigator(panel -> {
 					springNavigator.init(this, panel);
 					return springNavigator;
-				})
+				}) 
                 .withTitle("Peoples Knowledge")
 				.withDesign(AppBarDesign.MATERIAL)
 				.add(new MenuHeader("PainGround", "Version " + applicationVersion,
