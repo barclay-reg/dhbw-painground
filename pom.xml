@@ -25,9 +25,8 @@
 		<vaadin.version>8.2.0</vaadin.version>
 		<!-- cant use selenium 3.6 cause of bug about unknown-platform, can't use 
 			3.7 cause of incompatibility with fluentlenium -->
-		<selenium.version>3.5.3</selenium.version>
-		<phantomjs.version>2.1.1</phantomjs.version>
-		<fluentlenium.version>3.4.1</fluentlenium.version>
+		<selenium.version>3.9.1</selenium.version>
+		<fluentlenium.version>3.5.2</fluentlenium.version>
 	</properties>
 
 	<repositories>
