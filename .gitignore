@@ -1,0 +1,11 @@
+# Maven Stuff
+target/
+
+# Eclipse Stuff
+.settings/
+.project
+.classpath
+
+.idea/
+employee-skills.iml
+

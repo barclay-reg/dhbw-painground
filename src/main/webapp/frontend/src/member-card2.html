@@ -1,0 +1,31 @@
+<!-- Dependency resources -->
+<link rel="import"
+	href="../bower_components/polymer/polymer-element.html">
+
+<!-- Defines the example-template element -->
+<dom-module id="member-card">
+    <template>
+        <table>
+          <thead>
+            <tr on-click="processElement">
+                <th>Name</th><th>Title</th><th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+                <template is="dom-repeat" items="[[relevantSkills]]">
+                    <tr on-click="handleClick">
+                        <td>[[item.name]]</td>
+                        <td>[[item.title]]</td>
+                        <td>[[item.email]]</td>
+                    </tr>
+            </template>
+          </tbody>
+        </table>
+    </template>
+    <script>
+        class MemberCardTemplate extends Polymer.Element {
+            static get is() {return 'member-card'}
+        }
+        customElements.define(MemberCardTemplate.is, MemberCardTemplate);
+    </script>
+</dom-module>

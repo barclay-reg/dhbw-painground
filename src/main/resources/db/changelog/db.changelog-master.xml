@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+   <changeSet id="1" author="robkle">
+      <comment>initial table for Issue #1</comment>
+      <createTable tableName="mp01_memberprofile">
+        		
+         <column name="id" type="BIGINT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+         </column>
+         <column name="memberid" type="varchar(50)">
+            <constraints nullable="false" unique="true"/>
+         </column>
+         <column name="givenname" type="varchar(50)"/>
+         <column name="surname" type="varchar(50)">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+    
+   <changeSet id="2" author="robkle">
+      <comment>add missing image for profile</comment>
+      <addColumn tableName="mp01_memberprofile">
+         <column name="image" type="BLOB"/>
+      </addColumn>
+   </changeSet>
+    
+   <changeSet id="3" author="robkle">
+      <comment>add missing birthdate for profile</comment>
+      <addColumn tableName="mp01_memberprofile">
+         <column name="dateofbirth" type="DATE"/>
+      </addColumn>
+   </changeSet>
+    
+   <changeSet id="4" author="robkle">
+      <comment>add list of skills (saved comma separated)</comment>
+      <addColumn tableName="mp01_memberprofile">
+         <column name="skills" type="CLOB"/>
+      </addColumn>
+   </changeSet>
+    
+   <changeSet id="5" author="robkle">
+      <comment>Replace skill text column by one-to-many table</comment>
+      <dropColumn columnName="skills" tableName="mp01_memberprofile"/>
+   		
+      <createTable tableName="mp02_skill">
+        		
+         <column name="id" type="BIGINT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+         </column>
+         <column name="name" type="varchar(100)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="created_date" type="DATE">
+            <constraints nullable="false"/>
+         </column>
+            
+         <column name="mp01_id_skilledprofile" type="BIGINT">
+            <constraints references="mp01_memberprofile(id)" foreignKeyName="fk_mp02_mp01_id" deleteCascade="true" />
+         </column>
+      </createTable>
+        
+      <createTable tableName="mp03_skillrating">
+        		
+         <column name="id" type="BIGINT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+         </column>
+         <column name="creator_name" type="varchar(100)">
+            <constraints nullable="true"/>
+         </column>
+         <column name="created_date" type="DATE">
+            <constraints nullable="false"/>
+         </column>
+         <column name="rating" type="varchar(100)">
+            <constraints nullable="false"/>
+         </column>
+            
+         <column name="mp02_id_ratedskill" type="BIGINT">
+            <constraints references="mp02_skill(id)" foreignKeyName="fk_mp03_mp02_id" deleteCascade="true" />
+         </column>
+      </createTable>
+        
+   </changeSet>
+    
+   <changeSet id="6" author="robkle">
+      <comment>Add skill level</comment>
+      <addColumn tableName="mp02_skill">
+         <column name="level" type="varchar(20)"/>
+      </addColumn>
+   </changeSet>
+    
+   <changeSet id="7" author="patste">
+      <comment>add projects and relationship between projects and members</comment>
+
+      <createTable tableName="mp02_companyproject">
+            
+         <column name="id" type="BIGINT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+         </column>
+         <column name="name" type="varchar(100)">
+            <constraints nullable="false"/>
+         </column>
+
+      </createTable>
+
+      <createTable tableName="mp03_projectmembership">
+
+         <column name="id" type="BIGINT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+         </column>
+         <column name="start_date" type="DATE">
+            <constraints nullable="false"/>
+         </column>
+         <column name="end_date" type="DATE">
+            <constraints nullable="true"/>
+         </column>
+         <column name="mp02_id_companyproject" type="BIGINT">
+            <constraints references="mp02_companyproject(id)" foreignKeyName="fk_companyproject_id" deleteCascade="true"/>
+         </column>
+         <column name="mp01_id_projectmember" type="BIGINT">
+            <constraints references="mp01_memberprofile(id)" foreignKeyName="fk_memberprofile_id" deleteCascade="true"/>
+         </column>
+
+      </createTable>
+
+   </changeSet>
+
+</databaseChangeLog>

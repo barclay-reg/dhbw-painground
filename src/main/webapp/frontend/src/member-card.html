@@ -1,0 +1,177 @@
+<<<<<<< Updated upstream
+<!-- Dependency resources -->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<dom-module id="member-card">
+	<template>
+		<div class="card">
+			<style>
+				/* Card style */
+
+				.card {
+					position: relative;
+					text-align: center;
+					width: 400px;
+					height: 200px;
+					position: relative;
+					margin: 7px;
+				}
+
+				.card {
+					background: #fff;
+					border-radius: 5px;
+					box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+					transition: 0.3s;
+				}
+
+				.card:hover {
+					box-shadow: 0 6px 2px -2px rgba(0, 0, 0, .2), 0 4px 4px 0 rgba(0, 0, 0, .14), 0 5px 10px 0 rgba(0, 0, 0, .12);
+					transition: 0.3s;
+				}
+
+				/* grid for content orientation */
+
+				.content {
+					display: grid;
+					grid-column-gap: 5px;
+					grid-row-gap: 5px;
+					grid-template-columns: 140px 220px;
+					grid-template-rows: 70px 30px 90px;
+				}
+				
+				
+		        .profile-picture-container object {
+		            height: 100px;
+		            width: auto;
+		            border-color: black;
+		            //border-radius: 5px 5px 0 0;
+		            grid-column: 1/2;
+		            grid-row: 1/2;
+		        }
+
+				.member {
+					padding-top: 10px;
+					grid-column: 2/3;
+					grid-row: 1/2;
+
+					text-align: center;
+					width: 90%;
+				}
+
+				h3 {
+					font-size: 1.5em;
+					font-weight: bold;
+					margin-bottom: 0.2em;
+				}
+
+				/* project list */
+
+				.project-list {
+					grid-column: 2/3;
+					grid-row: 2/4;
+					position: relative;
+				}
+
+				.project-list table {
+					margin: 0.2em 0.2em;
+					width: 100%;
+					border-collapse: collapse;
+				}
+
+				.project-list table th {
+					font-weight: bold;
+				}
+
+				.project-list>tr {
+					line-height: 0.5em;
+				}
+
+				.project-list table tr {
+					text-align: left;
+				}
+
+				.project-list table tr th {
+					border-bottom: 2px solid #ddd;
+				}
+
+				.project-list table tr td {
+					border-bottom: 0.5px solid #ddd;
+				}
+
+				/* skill list */
+
+				.skill-list {
+					grid-column: 1/2;
+					grid-row: 2/4;
+					width: 100%;
+					margin-top: 10px;
+				}
+
+				.skill-list #skill {
+					text-align: center;
+					margin: 0px;
+					margin-left: 10px;
+					margin-right: 5px;
+				}
+
+				.skill-list #skill p {
+					color: white;
+					font-size: 1.2rem;
+					height: 30px;
+					width: 100%;
+					line-height: 30px;
+					justify-content: center;
+					margin: 0;
+					margin-bottom: 6px;
+					border-radius: 5px;
+				}
+			</style>
+			<div class="content">
+				<div class="profile-picture-container"><slot name="picture"></slot></div>
+				<div class="member">
+					<h3>
+						<b>[[name]] [[surname]]</b>
+					</h3>
+				</div>
+				<div class="project-list">
+					<table>
+						<thead>
+							<tr>
+								<th>Project</th>
+								<th>start</th>
+								<th>end</th>
+							</tr>
+						</thead>
+						<tbody>
+							<template is="dom-repeat" items="[[projects]]">
+								<tr id="[[item.projectName]]">
+									<td>{{item.projectName}}</td>
+									<td>{{item.startDateAsString}}</td>
+									<td>{{item.endDateAsString}}</td>
+								</tr>
+							</template>
+						</tbody>
+					</table>
+				</div>
+				<div class="skill-list">
+					<dom-repeat items="[[relevantSkills]]">
+						<template>
+							<div id="skill" class="[[item.name]]">
+								<p style="background-color:{{item.level.htmlColor}};">
+									{{item.name}}</p>
+							</div>
+						</template>
+					</dom-repeat>
+				</div>
+			</div>
+		</div>
+	</template>
+	<!-- Polymer boilerplate to register the example-template element -->
+	<script>
+		class MemberCardTemplate extends Polymer.Element {
+			static get is() {
+				return 'member-card'
+			}
+		}
+		customElements.define(MemberCardTemplate.is, MemberCardTemplate);
+	</script>
+</dom-module>
