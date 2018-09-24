@@ -22,8 +22,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import net.kleinschmager.dhbw.tfe16.painground.persistence.model.MemberProfile;
 import net.kleinschmager.dhbw.tfe16.painground.persistence.repository.MemberProfileRepository;
 
-@Route("addProfile")
-@Theme(Lumo.class)
+@Route(value = "addProfile", layout = MainView.class)
 public class AddProfileView extends Div {
 	
 	private MemberProfileRepository profileRepo;
@@ -93,10 +92,8 @@ public class AddProfileView extends Div {
 		//add(formLayout);
 		//add(actions);
 		//formLayout.add(components);
-		
-		NavigationLayout navLayout = new NavigationLayout();
 
-		add(navLayout.getNavigationLayout(formLayout));
+		add(formLayout);
 				
 	}
 

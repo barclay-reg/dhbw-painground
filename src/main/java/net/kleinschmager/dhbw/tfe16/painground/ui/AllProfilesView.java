@@ -11,6 +11,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
@@ -26,8 +27,8 @@ import java.util.List;
 /**
  * View to show all profiles existing in the database
  */
-@Route("allprofiles")
-@Theme(Lumo.class)
+@Route(value = "profiles", layout = MainView.class)
+//@RouteAlias(value = "")
 public class AllProfilesView extends Div {
 
     private MemberProfileRepository profileRepo;
@@ -51,9 +52,8 @@ public class AllProfilesView extends Div {
         VerticalLayout verticalLayout = new VerticalLayout();
         verticalLayout.add(searchBar);
         verticalLayout.add(profileCards);
-
-        NavigationLayout navLayout = new NavigationLayout();
-        add(navLayout.getNavigationLayout(verticalLayout));
+        
+        add(verticalLayout);
     }
 
 //	private Component createComponent(int index, String color) {

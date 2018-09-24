@@ -84,7 +84,7 @@ public class LoginView extends VerticalLayout {
 			public void onComponentEvent(ComponentEvent event) 
 			{
 				 setUserNameToContext(txtUsername.getValue());
-				 getUI().get().navigate("dashboard");	
+				 getUI().get().navigate("profiles");	
 			}
 
 		});
