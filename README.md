@@ -12,7 +12,7 @@
 
 ### IDE Setup
 
-1. ensure, that you have the [EditorConfig](https://editorconfig.org) Plugin in your IDE/Editor or your choice
+1. ensure, that you have the [EditorConfig](https://editorconfig.org) Plugin in your IDE/Editor of your choice
 
 ### Know-How
 
