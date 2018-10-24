@@ -40,7 +40,7 @@ public class MemberCard extends PolymerTemplate<MemberCardModel> {
 	        picture.setAttribute("type", "image/png");
 	        picture.setAttribute("data", imageResource);
 	        // must add this style, to apply css settings within member-card.html
-	        picture.setAttribute("class", "member-card");
+	        picture.setAttribute("style", "height: 100px; width: auto;");
 	        
 	        getElement().appendChild(picture);
 		}

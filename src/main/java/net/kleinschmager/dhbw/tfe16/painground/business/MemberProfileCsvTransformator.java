@@ -63,6 +63,7 @@ public class MemberProfileCsvTransformator {
 			newProfile.setGivenName(singleLine[2]);
 			newProfile.setDateOfBirth(toDate(singleLine[3]));
 			//newProfile.setSkills(singleLine[4]);
+			//
 //			newProfile.setPicture(getImageAsByte(singleLine[5]));
 			return Optional.of(newProfile);
 		} else {

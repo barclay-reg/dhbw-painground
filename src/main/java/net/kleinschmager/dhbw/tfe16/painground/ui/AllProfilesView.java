@@ -7,6 +7,9 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
+import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -17,6 +20,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 
 import net.kleinschmager.dhbw.tfe16.painground.persistence.model.MemberProfile;
 import net.kleinschmager.dhbw.tfe16.painground.persistence.repository.MemberProfileRepository;
+import net.kleinschmager.dhbw.tfe16.painground.ui.components.FuseCard;
 import net.kleinschmager.dhbw.tfe16.painground.ui.components.MemberCard;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +50,7 @@ public class AllProfilesView extends Div {
     @Override
     protected void onAttach(AttachEvent attachEvent) {
         List<Component> components = paintBoard();
-        HorizontalLayout profileCards = createProfilelList(components);
+        Component profileCards = createProfilelList(components);
         HorizontalLayout searchBar = createSearch();
 
         VerticalLayout verticalLayout = new VerticalLayout();
@@ -55,11 +59,6 @@ public class AllProfilesView extends Div {
         
         add(verticalLayout);
     }
-
-//	private Component createComponent(int index, String color) {
-//		Div component = new Div();
-//		return component;
-//	}
 
     private HorizontalLayout createSearch() {
         HorizontalLayout searchLayout = new HorizontalLayout();
@@ -88,21 +87,28 @@ public class AllProfilesView extends Div {
         List<Component> components = new ArrayList<>();
         for (MemberProfile memberProfile : allMembers) {
             MemberCard card = new MemberCard(memberProfile);
-            card.getElement();
-            components.add(card);
+            FuseCard cardWrapper = new FuseCard(card);
+            components.add(cardWrapper);
 
         }
         return components;
     }
 
-    private HorizontalLayout createProfilelList(List<Component> components) {
-        HorizontalLayout horizontalLayout = new HorizontalLayout();
-        for (Component profile : components) {
-            horizontalLayout.add(profile);
-        }
-        horizontalLayout.getStyle().set("flex-wrap", "wrap");
-        horizontalLayout.getStyle().set("align-content", "flex-start");
-        horizontalLayout.setSpacing(false);
-        return horizontalLayout;
+    private Component createProfilelList(List<Component> components) {
+        FlexLayout layout = new FlexLayout();
+        components.forEach(c -> layout.add(c));
+        
+        layout.setAlignItems(Alignment.START);
+        layout.setJustifyContentMode(JustifyContentMode.BETWEEN);
+        //horizontalLayout.set
+        
+        
+        layout.getStyle().set("flex-direction", "row");
+        layout.getStyle().set("flex-wrap", "wrap");
+        
+        layout.getStyle().set("align-content","space-between");
+        //horizontalLayout.getStyle().set("align-content", "flex-start");
+        //horizontalLayout.setSpacing(false);
+        return layout;
     }
 }

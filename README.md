@@ -1,11 +1,11 @@
-# Project Base for Vaadin Flow and Spring Boot
+# Example Projekt for DHBW lectures
 
 ## Start development
 
-### Checkout
+### Checkout & Start
 1. clone repo
-1. run `mvn clean install` (to execute some vaadin tasks)
-1. run `mvn spring-boot:run` in commandline or launch class `com.actico.hackathon18.employeeskill.EmployeeSkillApplication` as main class
+1. run `mvnw clean install` in terminal
+1. run `mvnw spring-boot:run` in terminal or launch class `net.kleinschmager.dhbw.tfe16.painground.PaingroundApplication` as main class within Eclipse
 1. view UI at http://localhost:8080/
 1. You can look at http://localhost:8080/liquibase to review the list of db scripts.
 1. View H2 console at http://localhost:8080/h2-console so that you can review the state of the database (the default jdbc url is `jdbc:h2:mem:testdb`).

@@ -74,7 +74,7 @@ public class MainView extends AppLayoutRouterLayout {
                     .withDesign(AppLayoutDesign.MATERIAL)
                     .withAppMenu(
                             LeftAppMenuBuilder.get()
-                                    .addToSection(new MenuHeaderComponent("PainGround", "Version 0.0.1", "frontend/images/logo.png"), HEADER)
+                                    .addToSection(new MenuHeaderComponent("PainGround", "Version 0.0.1", "frontend/images/dont-panic-alpha.png"), HEADER)
                                     //.addToSection(new LeftClickableComponent("Set Behaviour HEADER", VaadinIcon.COG.create(), clickEvent -> openModeSelector(variant)), HEADER)
                                     .add(new LeftNavigationComponent("Home", VaadinIcon.HOME.create(), AllProfilesView.class))
                                     .add(new LeftNavigationComponent("Add Profile", VaadinIcon.PLUS.create(), AddProfileView.class))
