@@ -8,6 +8,7 @@ import static org.apache.commons.lang3.StringUtils.*;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +20,9 @@ import com.google.common.collect.Lists;
 
 import kr.pe.kwonnam.slf4jlambda.LambdaLogger;
 import kr.pe.kwonnam.slf4jlambda.LambdaLoggerFactory;
+import net.kleinschmager.dhbw.tfe16.painground.persistence.model.Level;
 import net.kleinschmager.dhbw.tfe16.painground.persistence.model.MemberProfile;
+import net.kleinschmager.dhbw.tfe16.painground.persistence.model.Skill;
 
 /**
  * Transform a csv file to a list of {@link MemberProfile}
@@ -62,13 +65,31 @@ public class MemberProfileCsvTransformator {
 			
 			newProfile.setGivenName(singleLine[2]);
 			newProfile.setDateOfBirth(toDate(singleLine[3]));
-			//newProfile.setSkills(singleLine[4]);
-			//
-//			newProfile.setPicture(getImageAsByte(singleLine[5]));
+			
+			List<Skill> skills = toSkills(singleLine[4]);
+			
+			skills.forEach( skill -> newProfile.addSkill(skill));
 			return Optional.of(newProfile);
 		} else {
 			return Optional.empty();
 		}
+	}
+	
+	public List<Skill> toSkills(String skillListing)
+	{
+	   String[] skillsAsText = skillListing.split(",");
+	   
+	   List<Skill> result = new ArrayList();
+	   
+	   for (int i=0; i < skillsAsText.length; i++)
+	   {
+	      Skill skill = new Skill();
+	      skill.setName(skillsAsText[i]);
+	      skill.setLevel(Level.NOVICE);
+	      skill.setCreatedDate(new Date());
+	      result.add(skill);
+	   }
+	   return result;
 	}
 	
 	public Date toDate(String dateAsString) {
