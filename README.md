@@ -1,8 +1,6 @@
 # Example Projekt for DHBW lectures
 
-image:https://travis-ci.org/barclay-reg/dhbw-painground.svg?branch=master[Build Status, link=https://travis-ci.org/barclay-reg/dhbw-painground]
-image:https://sonarcloud.io/api/project_badges/measure?project=net.kleinschmager.dhbw.tfe16%3Apainground&metric=alert_status[Quality Gate, link=https://sonarcloud.io/dashboard?id=net.kleinschmager.dhbw.tfe16%3Apainground]
-
+[![Build Status](https://travis-ci.org/barclay-reg/dhbw-painground.svg?branch=master)](https://travis-ci.org/barclay-reg/dhbw-painground)
 
 ## Start development
 

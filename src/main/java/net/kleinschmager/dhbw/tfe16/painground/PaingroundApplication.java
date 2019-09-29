@@ -23,6 +23,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import kr.pe.kwonnam.slf4jlambda.LambdaLogger;
 import kr.pe.kwonnam.slf4jlambda.LambdaLoggerFactory;
@@ -76,6 +77,11 @@ public class PaingroundApplication extends SpringBootServletInitializer {
          fetchAndPrintAllProfiles(repository);
       };
    }
+   
+   //@Bean(name = "multipartResolver")
+   //public CommonsMultipartResolver multipartResolver() {
+   //    return new CommonsMultipartResolver();
+   //}
 
    private void addMoreProfiles(MemberProfileRepository repository) {
       CompanyProject webProjects = new CompanyProject("web_client");

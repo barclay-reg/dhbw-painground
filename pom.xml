@@ -19,8 +19,8 @@
       <webapp.directory>src/main/webapp</webapp.directory>
 
       <!-- Dependencies -->
-      <vaadin.version>10.0.5</vaadin.version>
-      <spring-boot.version>2.0.4.RELEASE</spring-boot.version>
+      <vaadin.version>12.0.3</vaadin.version>
+      <spring-boot.version>2.1.0.RELEASE</spring-boot.version>
       <!-- use the x.x.x-optout versions, to avoid license-checks -->
       <vaadin-usage-statistics.version>1.0.0-optout</vaadin-usage-statistics.version>
    </properties>
@@ -101,7 +101,7 @@
          <artifactId>spring-boot-devtools</artifactId>
          <optional>true</optional>
       </dependency>
-      
+
       <dependency>
          <groupId>org.webjars.bowergithub.vaadin</groupId>
          <artifactId>vaadin-usage-statistics</artifactId>
@@ -147,13 +147,13 @@
          <groupId>com.vaadin</groupId>
          <artifactId>vaadin-charts-flow</artifactId>
       </dependency>
-      
+
       <dependency>
          <groupId>com.github.appreciated</groupId>
          <artifactId>app-layout-addon</artifactId>
          <version>2.0.0</version>
       </dependency>
-      
+
       <!-- testing -->
       <dependency>
          <groupId>org.springframework.boot</groupId>
@@ -187,21 +187,6 @@
          </plugin>
 
          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-clean-plugin</artifactId>
-            <version>3.0.0</version>
-            <configuration>
-               <filesets>
-                  <fileset>
-                     <directory>${webapp.directory}/frontend-es5</directory>
-                  </fileset>
-                  <fileset>
-                     <directory>${webapp.directory}/frontend-es6</directory>
-                  </fileset>
-               </filesets>
-            </configuration>
-         </plugin>
-         <plugin>
             <groupId>org.ec4j.maven</groupId>
             <artifactId>editorconfig-maven-plugin</artifactId>
             <version>0.0.5</version>
@@ -220,12 +205,17 @@
 
    <profiles>
       <profile>
-         <id>productionMode</id>
+         <!-- Production mode can be activated with either property or profile -->
+         <id>production-mode</id>
          <activation>
             <property>
                <name>vaadin.productionMode</name>
             </property>
          </activation>
+         <properties>
+            <vaadin.productionMode>true</vaadin.productionMode>
+         </properties>
+
 
          <dependencies>
             <dependency>
@@ -238,7 +228,7 @@
             <plugins>
                <plugin>
                   <groupId>com.vaadin</groupId>
-                  <artifactId>flow-maven-plugin</artifactId>
+                  <artifactId>vaadin-maven-plugin</artifactId>
                   <version>${vaadin.version}</version>
                   <executions>
                      <execution>
@@ -246,17 +236,12 @@
                            <goal>copy-production-files</goal>
                            <goal>package-for-production</goal>
                         </goals>
-                        <configuration>
-                           <transpileOutputDirectory>${webapp.directory}</transpileOutputDirectory>
-                        </configuration>
                      </execution>
                   </executions>
                </plugin>
-
                <plugin>
                   <groupId>org.springframework.boot</groupId>
                   <artifactId>spring-boot-maven-plugin</artifactId>
-                  <version>${spring-boot.version}</version>
                   <configuration>
                      <jvmArguments>-Dvaadin.productionMode</jvmArguments>
                   </configuration>
