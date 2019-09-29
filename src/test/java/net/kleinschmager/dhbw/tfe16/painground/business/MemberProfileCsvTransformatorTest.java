@@ -35,7 +35,7 @@ public class MemberProfileCsvTransformatorTest {
        // WHEN
        List<MemberProfile> result = cut.transform(input);
        // THEN
-       assertEquals("List should contains one elements", 2, result.size());
+       assertEquals("List should contains one elements", 1, result.size());
        assertThat("memberId should match", result.get(0).getMemberId(), equalTo(input[0][0]));
        assertThat("surname should match", result.get(0).getSurName(), equalTo(input[0][1]));
        assertThat("givenname should match", result.get(0).getGivenName(), equalTo(input[0][2]));
