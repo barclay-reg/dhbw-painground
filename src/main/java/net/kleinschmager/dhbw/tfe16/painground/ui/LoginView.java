@@ -1,15 +1,11 @@
 package net.kleinschmager.dhbw.tfe16.painground.ui;
 
-import java.awt.event.KeyEvent;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.KeyDownEvent;
-import com.vaadin.flow.component.KeyEventListener;
-import com.vaadin.flow.component.KeyLocation;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
@@ -17,11 +13,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
-
-import elemental.events.KeyboardEvent.KeyCode;
 
 @SuppressWarnings("serial")
 @Route("")
