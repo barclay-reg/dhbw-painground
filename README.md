@@ -76,4 +76,4 @@ For more information on Vaadin Flow, visit https://vaadin.com/flow.
 
 ### Story 13
 
->Ich möchte ein seperates Fenster haben, in dem ich eine Auswahl an Profilen zwischen speichern kann. Dabei können die Profile per drag and drop in das Fenster verschoben werden.
+>Ich möchte ein separates Fenster haben, in dem ich eine Auswahl an Profilen zwischen speichern kann. Dabei können die Profile per drag and drop in das Fenster verschoben werden.
