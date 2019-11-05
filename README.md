@@ -34,7 +34,7 @@ For more information on Vaadin Flow, visit https://vaadin.com/flow.
 
 ### Story 3
 
->Ich möchte, dass das Profile auch Felder für die private Adresse, private Telefonnummer und Hobbies enthält.
+>Ich möchte, dass das Profile auch Felder für die private Adresse, private Telefonnummer und Hobbys enthält.
 
 ### Story 4
 
