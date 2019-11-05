@@ -19,6 +19,9 @@
 
 1. ensure, that you have the [EditorConfig](https://editorconfig.org) Plugin in your IDE/Editor of your choice
 
+
+
+
 ### Know-How
 
 For documentation on using Vaadin Flow and Spring, visit [vaadin.com/docs](https://vaadin.com/docs/v10/flow/spring/tutorial-spring-basic.html)
