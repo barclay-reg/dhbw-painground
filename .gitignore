@@ -1,3 +1,5 @@
+.DS_Store
+
 # Maven Stuff
 target/
 
@@ -9,3 +11,5 @@ target/
 .idea/
 employee-skills.iml
 
+/webpack.generated.js
+/node_modules/

@@ -19,7 +19,7 @@
       <webapp.directory>src/main/webapp</webapp.directory>
 
       <!-- Dependencies -->
-      <vaadin.version>14.0.15</vaadin.version>
+      <vaadin.version>14.4.2</vaadin.version>
       <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
       <!-- use the x.x.x-optout versions, to avoid license-checks -->
       <vaadin-usage-statistics.version>1.0.0-optout</vaadin-usage-statistics.version>
@@ -79,18 +79,13 @@
       <dependency>
          <groupId>com.vaadin</groupId>
          <artifactId>vaadin-spring-boot-starter</artifactId>
-         <version>${vaadin.version}</version>
-      </dependency>
-
-      <dependency>
-         <groupId>com.vaadin</groupId>
-         <artifactId>vaadin-spring</artifactId>
       </dependency>
 
       <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-data-jpa</artifactId>
       </dependency>
+
       <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-jooq</artifactId>
