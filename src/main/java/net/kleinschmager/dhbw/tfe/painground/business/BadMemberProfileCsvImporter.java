@@ -43,64 +43,126 @@ public class BadMemberProfileCsvImporter implements CsvImporter {
 
 	private static final LambdaLogger log = LambdaLoggerFactory.getLogger(BadMemberProfileCsvImporter.class);
 
+	//Would wish to rename importFile, bad naming
 	@Override
-	public List<MemberProfile> importFile(File csvFile) {
-	   
-	   List<MemberProfile> listM = Lists.newArrayList();
-	   SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-		
-		try (FileInputStream fis = new FileInputStream(csvFile)) {
-			
-			List<String> d = IOUtils.readLines(fis, Charset.defaultCharset());
-					
-			String[][] list = new String[d.size()-1][StringUtils.countMatches(d.get(0), ';')];
-			
-			for (int i = 1; i < d.size(); i++) {
-				
-			   list[i-1] = d.get(i).split(";");
-			}
-			
-			for(int i = 0; i < list.length; i++) {
+	public List<MemberProfile> importFile(File fileOfMembers) {
 
-		        if (isNotBlank(list[i][0]) && isNotBlank(list[i][1])) {
-		        
-		            MemberProfile newProfile = new MemberProfile(list[i][0], list[i][1]);
-		            
-		            newProfile.setGivenName(list[i][2]);
-		            newProfile.setDateOfBirth(sdf.parse(list[i][3]));
-		            
-		            String[] splitted = list[i][4].split(",");
-		            
-		            List<Skill> result = new ArrayList<>();
-		            
-		            for (int j=0; j < splitted.length; j++)
-		            {
-		               Skill skill = new Skill();
-		               skill.setName(splitted[j]);
-		               skill.setLevel(Level.NOVICE);
-		               skill.setCreatedDate(new Date());
-		               result.add(skill);
-		            }
-		            
-		            result.forEach( elem -> newProfile.addSkill(elem));
-		            listM.add(newProfile);
-		        } // end if
-	        } // end for loop
-			
-			return listM;
-			
-			
-		} catch (FileNotFoundException e) {
+      try {
+         List<String> rawList = readFile(fileOfMembers);
+         return createProfilesAndSaveToList(rawList);
+      }
 
-			log.error(() -> "Could not find given file", e);
-			
-			return Collections.emptyList();
-			
-		} catch (IOException | ParseException e) {
-			
-			log.error(() -> "Failed to read content of given file", e);
-			return Collections.emptyList();
-		}
-	}
-	
+      catch (ParseException e) {
+         log.error(() -> "Failed to read content of given file", e);
+         return Collections.emptyList();
+      }
+
+   }
+
+   public List<String> readFile(File fileOfProfiles) {
+
+      try (FileInputStream fileInputStream = new FileInputStream(fileOfProfiles)) {
+
+         List<String> rawMemberProfileList = IOUtils.readLines(fileInputStream, Charset.defaultCharset());
+
+         return rawMemberProfileList;
+      }
+      catch (FileNotFoundException e) {
+
+         log.error(() -> "Could not find given file", e);
+
+         return Collections.emptyList();
+      }
+      catch (IOException e) {
+
+         log.error(() -> "Failed to read content of given file", e);
+         return Collections.emptyList();
+      }
+   }
+
+   private List<MemberProfile> createProfilesAndSaveToList(List<String> rawProfileList) throws ParseException {
+      List<MemberProfile> profileList = Lists.newArrayList();
+
+      String[][] profiles = splitIDsFromRestAndConvertToArray(rawProfileList);
+
+      //array.length returns length of first dimension
+      int numberOfProfiles = profiles.length;
+
+      for (int profile = 0; profile < numberOfProfiles; profile++) {
+         String[] rawProfile = profiles[profile];
+         profileList.add(extractProfile(rawProfile));
+      }
+
+      return profileList;
+   }
+
+   private String[][] splitIDsFromRestAndConvertToArray(List<String> rawProfileList) {
+	   int numberOfHeaderLines = 1;
+      int numberOfMemberProfiles = rawProfileList.size() - numberOfHeaderLines;
+      int numberOfPropertiesPerMember = StringUtils.countMatches(rawProfileList.get(0), ';');
+
+      String[][] arrayOfProfiles = new String[numberOfMemberProfiles][numberOfPropertiesPerMember];
+
+      for (int profile = 0; profile < numberOfMemberProfiles; profile++) {
+
+         //splits one String in Format "ID;Surname;SKills;..." in an array [(ID),(Surname), (Skills),...]
+         arrayOfProfiles[profile] = rawProfileList.get(profile + numberOfHeaderLines).split(";");
+      }
+      return arrayOfProfiles;
+   }
+
+   private MemberProfile extractProfile(String[] rawProfile) throws ParseException {
+
+	   try {
+         String memberID = rawProfile[0];
+         String surName = rawProfile[1];
+         if (isNotBlank(memberID) && isNotBlank(surName)) {
+
+            MemberProfile newProfile = new MemberProfile(memberID, surName);
+
+            String givenName = rawProfile[2];
+            newProfile.setGivenName(givenName);
+
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+            Date dateOfBirth = simpleDateFormat.parse(rawProfile[3]);
+            newProfile.setDateOfBirth(dateOfBirth);
+
+            List<Skill> skills = extractSkills(rawProfile);
+
+            skills.forEach(skill ->
+               newProfile.addSkill(skill));
+
+            return newProfile;
+         }
+      }
+	   catch (ParseException e) {
+         log.error(() -> "Failed to extract profile information of given raw data", e);
+         return null;
+      }
+      return null;
+   }
+
+   private List<Skill> extractSkills(String[] rawProfile) {
+         String[] rawSkills = rawProfile[4].split(",");
+
+         List<Skill> skills = new ArrayList<>();
+         int numberOfSkills = rawSkills.length;
+
+         for (int skill = 0; skill < numberOfSkills; skill++)
+         {
+            Skill newSkill = new Skill();
+
+            String skillName = rawSkills[skill];
+            newSkill.setName(skillName);
+            //default value?
+            newSkill.setLevel(Level.NOVICE);
+
+            Date creationDate = new Date();
+            newSkill.setCreatedDate(creationDate);
+            skills.add(newSkill);
+         }
+
+         return skills;
+      }
+
 }
