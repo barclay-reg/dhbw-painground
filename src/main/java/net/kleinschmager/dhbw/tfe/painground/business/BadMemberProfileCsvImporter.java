@@ -51,35 +51,32 @@ public class BadMemberProfileCsvImporter implements CsvImporter {
 		
 		try (FileInputStream fis = new FileInputStream(csvFile)) {
 			
-			List<String> content = IOUtils.readLines(fis, Charset.defaultCharset());
+			List<String> d = IOUtils.readLines(fis, Charset.defaultCharset());
 					
-			String[][] list = new String[content.size()-1][StringUtils.countMatches(content.get(0), ';')];
+			String[][] list = new String[d.size()-1][StringUtils.countMatches(d.get(0), ';')];
 			
-			for (int i = 1; i < content.size(); i++) {
+			for (int i = 1; i < d.size(); i++) {
 				
-			   list[i-1] = content.get(i).split(";");
+			   list[i-1] = d.get(i).split(";");
 			}
 			
 			for(int i = 0; i < list.length; i++) {
-			   
-			    String memberId = list[i][0];
-		        String surname = list[i][1];
+
+		        if (isNotBlank(list[i][0]) && isNotBlank(list[i][1])) {
 		        
-		        if (isNotBlank(memberId) && isNotBlank(surname)) {
-		        
-		            MemberProfile newProfile = new MemberProfile(memberId, surname);
+		            MemberProfile newProfile = new MemberProfile(list[i][0], list[i][1]);
 		            
 		            newProfile.setGivenName(list[i][2]);
 		            newProfile.setDateOfBirth(sdf.parse(list[i][3]));
 		            
-		            String[] skillsAsText = list[i][4].split(",");
+		            String[] splitted = list[i][4].split(",");
 		            
 		            List<Skill> result = new ArrayList<>();
 		            
-		            for (int j=0; j < skillsAsText.length; j++)
+		            for (int j=0; j < splitted.length; j++)
 		            {
 		               Skill skill = new Skill();
-		               skill.setName(skillsAsText[j]);
+		               skill.setName(splitted[j]);
 		               skill.setLevel(Level.NOVICE);
 		               skill.setCreatedDate(new Date());
 		               result.add(skill);
@@ -87,8 +84,8 @@ public class BadMemberProfileCsvImporter implements CsvImporter {
 		            
 		            result.forEach( elem -> newProfile.addSkill(elem));
 		            listM.add(newProfile);
-		        }
-	        }
+		        } // end if
+	        } // end for loop
 			
 			return listM;
 			
