@@ -19,7 +19,7 @@
       <webapp.directory>src/main/webapp</webapp.directory>
 
       <!-- Dependencies -->
-      <vaadin.version>14.4.2</vaadin.version>
+      <vaadin.version>14.6.2</vaadin.version>
       <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
       <!-- use the x.x.x-optout versions, to avoid license-checks -->
       <vaadin-usage-statistics.version>1.0.0-optout</vaadin-usage-statistics.version>
